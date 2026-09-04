@@ -1,0 +1,109 @@
+/* FOUR / AFTER — Signal / Sleeve. Single source for brand color and UI decisions.
+   Artwork and vector-export scripts also read the primitive color tokens here. */
+:root {
+  --color-carbon: #111112;
+  --color-charcoal: #1b1b1d;
+  --color-surface: #252527;
+  --color-paper: #eee9df;
+  --color-paper-deep: #e2dcd1;
+  --color-chalk: #faf7f1;
+  --color-silver: #aeaaa4;
+  --color-graphite: #66615b;
+  --color-signal: #f0322b;
+  --color-signal-ink: #b8231e;
+  --color-signal-hover: #ff5148;
+  --color-signal-active: #d32922;
+  --color-vinyl-dark: #580508;
+  --color-vinyl-mid: #b20913;
+  --color-vinyl-light: #f74542;
+  --color-vinyl-groove: #ffb1a826;
+  --color-vinyl-specular: #ff8a78;
+  --color-vinyl-edge: #850912;
+  --color-border-dark: #ffffff29;
+  --color-border-light: #11111230;
+  --color-overlay: #111112e8;
+
+  --bg: var(--color-carbon);
+  --secondary-bg: var(--color-charcoal);
+  --surface: var(--color-surface);
+  --ink: var(--color-paper);
+  --muted: var(--color-silver);
+  --accent: var(--color-signal);
+  --accent-text: var(--color-signal);
+  --on-accent: var(--color-carbon);
+  --line: var(--color-border-dark);
+  --hover: var(--color-signal-hover);
+  --active: var(--color-signal-active);
+  --focus: var(--color-paper);
+  --hover-surface: #ffffff06;
+
+  --font-display: "Inter Tight Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter Tight Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-meta: "IBM Plex Mono", monospace;
+  --weight-display: 420;
+  --tracking-display: -0.055em;
+  --tracking-meta: 0.055em;
+  --leading-display: 1.02;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --gutter: 4%;
+  --radius-control: 2px;
+  --radius-dialog: 3px;
+  --radius-round: 50%;
+  --border-width: 1px;
+  --border: var(--border-width) solid var(--line);
+  --focus-width: 2px;
+  --focus-offset: 5px;
+  --shadow-dialog: 0 24px 100px #0008;
+  --shadow-vinyl:
+    7px 13px 0 var(--color-vinyl-edge), 11px 20px 0 var(--color-carbon),
+    30px 65px 65px #0009;
+  --shadow-vinyl-mobile:
+    5px 8px 0 var(--color-vinyl-edge), 7px 12px 0 var(--color-carbon),
+    15px 30px 40px #0008;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --fast: 180ms;
+  --motion-hover: 240ms;
+  --motion-control: 300ms;
+  --motion-dialog: 350ms;
+  --motion-image: 900ms;
+  --motion-label: 450ms;
+  --motion-wave: 1100ms;
+  --motion-title: 1100ms;
+  --motion-object: 1600ms;
+  --motion-spin: 32s;
+  --stagger: 90ms;
+  --reveal: 850ms;
+  --press-scale: 0.975;
+  --image-hover-scale: 1.045;
+}
+.paper-section {
+  --bg: var(--color-paper);
+  --secondary-bg: var(--color-paper-deep);
+  --surface: var(--color-chalk);
+  --ink: var(--color-carbon);
+  --muted: var(--color-graphite);
+  --accent-text: var(--color-signal-ink);
+  --line: var(--color-border-light);
+  --focus: var(--color-signal-ink);
+  --hover-surface: #11111208;
+  color-scheme: light;
+  color: var(--ink);
+  background: var(--bg);
+}
+@media (max-width: 650px) {
+  :root {
+    --gutter: 6%;
+  }
+}

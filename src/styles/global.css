@@ -1,15 +1,7 @@
+@import "./tokens.css";
 :root {
-  --bg: #11130f;
-  --surface: #1b1e17;
-  --ink: #efeee7;
-  --muted: #a7aaa0;
-  --accent: #d2e7ac;
-  --line: #ffffff25;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --fast: 180ms;
-  --reveal: 850ms;
   color-scheme: dark;
-  font-family: "Manrope Variable", sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--ink);
   font-synthesis: none;
@@ -46,12 +38,12 @@ button {
 }
 button:active,
 .pill:active {
-  transform: scale(0.97);
+  transform: scale(var(--press-scale));
 }
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 6px;
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
 }
 img {
   display: block;
@@ -67,28 +59,28 @@ p {
 h1,
 h2,
 h3 {
-  font-family: "Space Grotesk Variable", sans-serif;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
 }
 h2 {
   font-size: clamp(40px, 5vw, 76px);
   line-height: 1.06;
-  letter-spacing: -0.055em;
+  letter-spacing: var(--tracking-display);
 }
 h2 span {
   color: var(--muted);
 }
 em {
-  font-family: Georgia, serif;
-  font-weight: 400;
+  font: inherit;
+  letter-spacing: -0.06em;
 }
 p {
   line-height: 1.7;
 }
 .micro {
-  font-family: "Space Grotesk Variable", sans-serif;
+  font-family: var(--font-meta);
   font-size: 10px;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-meta);
   line-height: 1.6;
   text-transform: uppercase;
 }
@@ -118,25 +110,12 @@ p {
   z-index: 20;
 }
 .brand {
-  display: flex;
+  display: inline-flex;
+  width: clamp(165px, 15vw, 230px);
   align-items: center;
-  gap: 12px;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: 0.04em;
 }
 .brand-symbol {
-  width: 42px;
-  height: 42px;
-  border: 1px solid #a8b298;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: "Space Grotesk Variable", sans-serif;
-  font-size: 25px;
-  letter-spacing: -0.1em;
-  padding-right: 4px;
+  display: none;
 }
 .desktop-nav {
   display: flex;
@@ -158,7 +137,7 @@ p {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 300ms var(--ease);
+  transition: transform var(--motion-control) var(--ease);
 }
 .desktop-nav a:hover:after,
 .footer a:hover:after {
@@ -187,16 +166,16 @@ p {
   display: flex;
   justify-content: space-between;
   padding-top: 28px;
-  color: #c0c3b6;
+  color: var(--muted);
 }
 .live-dot {
   display: inline-block;
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: var(--radius-round);
   background: var(--accent);
   margin-right: 9px;
-  box-shadow: 0 0 10px #d2e7ac44;
+  box-shadow: 0 0 10px transparent;
 }
 .hero-title {
   position: relative;
@@ -210,10 +189,10 @@ p {
 }
 .hero-title > span {
   display: block;
-  animation: title-enter 1300ms var(--ease) both;
+  animation: title-enter var(--motion-title) var(--ease) both;
 }
 .hero-title > span + span {
-  animation-delay: 140ms;
+  animation-delay: var(--stagger);
 }
 .title-slash {
   color: var(--accent);
@@ -258,12 +237,12 @@ p {
   width: 48px;
   height: 48px;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: var(--radius-round);
   font-size: 20px;
   transition:
-    background 250ms,
-    color 250ms,
-    transform 400ms var(--ease);
+    background var(--motion-hover),
+    color var(--motion-hover),
+    transform var(--motion-label) var(--ease);
 }
 .round-link:hover i {
   background: var(--accent);
@@ -287,7 +266,7 @@ p {
   top: 5%;
   perspective: 1100px;
   z-index: 1;
-  animation: object-enter 1800ms var(--ease) both;
+  animation: object-enter var(--motion-object) var(--ease) both;
 }
 .record {
   position: absolute;
@@ -296,52 +275,49 @@ p {
   top: 15%;
   left: 5%;
   transform: rotateX(33deg) rotateY(-23deg) rotateZ(-24deg);
-  transition: transform 950ms var(--ease);
-  border-radius: 50%;
-  background: #282b24;
-  box-shadow:
-    7px 13px 0 #494e3f,
-    11px 20px 0 #171b14,
-    30px 65px 65px #0009;
+  transition: transform var(--motion-image) var(--ease);
+  border-radius: var(--radius-round);
+  background: var(--color-vinyl-edge);
+  box-shadow: var(--shadow-vinyl);
 }
 .record-surface {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: var(--radius-round);
+  position: relative;
   background:
     repeating-radial-gradient(
       circle at center,
       transparent 0 2px,
-      #dce8c420 2.5px,
+      var(--color-vinyl-groove) 2.5px,
       transparent 3.5px
     ),
     conic-gradient(
       from 30deg,
-      #13170f,
-      #7b846d 16%,
-      #242c20 25%,
-      #0e120c 42%,
-      #a5ac94 49%,
-      #3b4531 54%,
-      #13180e 66%,
-      #7a8667 77%,
-      #13170f 93%
+      var(--color-vinyl-dark),
+      var(--color-vinyl-light) 16%,
+      var(--color-vinyl-mid) 25%,
+      var(--color-vinyl-dark) 42%,
+      var(--color-vinyl-specular) 49%,
+      var(--color-vinyl-mid) 54%,
+      var(--color-vinyl-dark) 66%,
+      var(--color-signal) 77%,
+      var(--color-vinyl-dark) 93%
     );
-  border: 2px solid #828b70;
-  position: relative;
+  border: 2px solid var(--color-vinyl-mid);
 }
 .record-label {
   position: absolute;
   inset: 32%;
-  background: var(--accent);
-  color: #192011;
-  border-radius: 50%;
+  background: var(--color-paper);
+  color: var(--color-carbon);
+  border-radius: var(--radius-round);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  animation: spin 28s linear infinite;
-  border: 1px solid #dceebf;
+  animation: spin var(--motion-spin) linear infinite;
+  border: 1px solid var(--color-paper-deep);
 }
 .record-label > span,
 .record-label small {
@@ -349,12 +325,10 @@ p {
   letter-spacing: 0.1em;
 }
 .record-label b {
-  font-family: "Space Grotesk Variable";
-  font-size: clamp(30px, 6vw, 90px);
-  letter-spacing: -0.12em;
-  line-height: 1;
-  font-weight: 500;
-  margin-left: -0.1em;
+  display: grid;
+  place-items: center;
+  width: 44%;
+  height: 44%;
 }
 .record-label i {
   position: absolute;
@@ -362,15 +336,15 @@ p {
   left: 48%;
   width: 5%;
   height: 5%;
-  background: #111;
-  border-radius: 50%;
-  border: 2px solid #adb98f;
+  background: var(--color-carbon);
+  border-radius: var(--radius-round);
+  border: 2px solid var(--color-silver);
 }
 .orbit {
   position: absolute;
   inset: 5% 0 2%;
-  border: 1px solid #b8c49a15;
-  border-radius: 50%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-round);
   transform: rotate(-35deg);
   pointer-events: none;
 }
@@ -382,18 +356,18 @@ p {
   position: absolute;
   right: 5%;
   bottom: 7%;
-  color: #c3c8b8;
+  color: var(--muted);
 }
 .frequency-strip {
   display: flex;
   justify-content: space-around;
-  gap: 40px;
+  gap: var(--space-10);
   overflow: hidden;
   white-space: nowrap;
   border-block: 1px solid var(--line);
   height: 65px;
   align-items: center;
-  font-family: "Space Grotesk Variable";
+  font-family: var(--font-display);
   font-size: 11px;
   letter-spacing: 0.14em;
   color: var(--accent);
@@ -416,7 +390,7 @@ p {
   color: var(--ink);
 }
 .collective {
-  padding-top: 80px;
+  padding-top: var(--space-20);
   padding-bottom: 35px;
 }
 .intro-grid {
@@ -453,7 +427,7 @@ p {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid var(--line);
-  padding-top: 24px;
+  padding-top: var(--space-6);
   color: var(--muted);
 }
 .section-heading {
@@ -469,7 +443,7 @@ p {
 .artist-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: var(--space-5);
 }
 .artist-card:nth-child(even) {
   margin-top: 55px;
@@ -484,11 +458,11 @@ p {
   width: 100%;
   height: 100%;
   transition:
-    transform 900ms var(--ease),
-    filter 500ms;
+    transform var(--motion-image) var(--ease),
+    filter var(--motion-label);
 }
 .artist-card:hover img {
-  transform: scale(1.07);
+  transform: scale(var(--image-hover-scale));
   filter: brightness(1.2);
 }
 .art-number {
@@ -510,11 +484,11 @@ p {
   height: 35px;
   background: var(--ink);
   color: var(--bg);
-  border-radius: 50%;
+  border-radius: var(--radius-round);
   display: grid;
   place-items: center;
   transform: rotate(-45deg);
-  transition: transform 400ms var(--ease);
+  transition: transform var(--motion-label) var(--ease);
 }
 .artist-card:hover .artist-open {
   transform: rotate(0);
@@ -534,11 +508,11 @@ p {
 .content-note {
   font-size: 10px;
   color: var(--muted);
-  margin-top: 24px;
+  margin-top: var(--space-6);
   max-width: 100%;
 }
 .sound {
-  background: #1a1d16;
+  background: var(--bg);
 }
 .sound-grid {
   display: grid;
@@ -558,18 +532,18 @@ p {
   margin-top: 28px;
 }
 .pill {
-  border: 1px solid #e6eddb45;
+  border: 1px solid var(--line);
   display: inline-flex;
   gap: 25px;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
+  border-radius: var(--radius-control);
   padding: 16px 24px;
   font-size: 12px;
   transition:
-    background 200ms,
-    color 200ms,
-    transform 180ms;
+    background var(--motion-hover),
+    color var(--motion-hover),
+    transform var(--fast);
 }
 .pill:hover {
   background: var(--accent);
@@ -587,7 +561,7 @@ p {
   height: 45px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
   max-width: 320px;
   margin-top: 25px;
 }
@@ -597,10 +571,10 @@ p {
   background: var(--accent);
   opacity: 0.4;
   transform: scaleY(0.3);
-  transition: transform 600ms var(--ease);
+  transition: transform var(--reveal) var(--ease);
 }
 .sound-playing .waveform i {
-  animation: wave 1100ms var(--ease) var(--delay) infinite alternate;
+  animation: wave var(--motion-wave) var(--ease) var(--delay) infinite alternate;
   opacity: 0.9;
 }
 .mix-card {
@@ -624,7 +598,7 @@ p {
 }
 .mix-card p {
   font-size: 12px;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
   color: var(--muted);
 }
 .mix-card .micro {
@@ -642,12 +616,12 @@ p {
   padding: 32px 0;
   border-top: 1px solid var(--line);
   transition:
-    padding 400ms var(--ease),
-    background 250ms;
+    padding var(--motion-label) var(--ease),
+    background var(--motion-hover);
 }
 .event-row:hover {
   padding-inline: 15px;
-  background: #ffffff03;
+  background: var(--hover-surface);
 }
 .event-row h3 {
   font-size: 26px;
@@ -687,7 +661,7 @@ p {
   font-size: 8px;
 }
 .gallery {
-  padding-top: 40px;
+  padding-top: var(--space-10);
 }
 .gallery-heading {
   display: flex;
@@ -714,7 +688,7 @@ p {
   margin-top: 110px;
 }
 .gallery-item:nth-child(3) {
-  margin-top: 40px;
+  margin-top: var(--space-10);
 }
 .gallery-item > div {
   position: relative;
@@ -724,26 +698,26 @@ p {
   width: 100%;
   height: auto;
   aspect-ratio: 1;
-  transition: transform 900ms var(--ease);
+  transition: transform var(--motion-image) var(--ease);
 }
 .gallery-item:nth-child(2) img {
   aspect-ratio: 3/4;
 }
 .gallery-item:hover img {
-  transform: scale(1.06);
+  transform: scale(var(--image-hover-scale));
 }
 .gallery-plus {
   position: absolute;
   bottom: 15px;
   right: 15px;
-  border: 1px solid #ffffff80;
-  border-radius: 50%;
+  border: 1px solid var(--color-silver);
+  border-radius: var(--radius-round);
   width: 38px;
   height: 38px;
   display: grid;
   place-items: center;
-  background: #1115;
-  transition: transform 300ms var(--ease);
+  background: var(--color-overlay);
+  transition: transform var(--motion-control) var(--ease);
 }
 .gallery-item:hover .gallery-plus {
   transform: rotate(90deg);
@@ -761,16 +735,16 @@ p {
   font-size: 8px;
 }
 .booking {
-  background: var(--accent);
-  color: #1c2315;
+  background: var(--bg);
+  color: var(--ink);
   padding-bottom: 30px;
 }
 .booking .section-label {
-  border-color: #1c231530;
-  color: #48523d;
+  border-color: var(--line);
+  color: var(--muted);
 }
 .booking .section-label > span:first-child {
-  color: #1c2315;
+  color: var(--ink);
 }
 .booking > p {
   font-size: 14px;
@@ -784,7 +758,7 @@ p {
   position: relative;
 }
 .booking h2 span {
-  color: #586846;
+  color: var(--ink);
 }
 .booking h2 i {
   position: absolute;
@@ -794,17 +768,20 @@ p {
   font-weight: 300;
 }
 .booking-cta {
-  border-color: #1c231580;
+  border-color: var(--ink);
   min-width: 220px;
+  background: var(--ink);
+  color: var(--bg);
 }
 .booking-cta:hover {
-  background: #1c2315;
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
 }
 .booking-bottom {
   margin-top: 70px;
   padding-top: 25px;
-  border-top: 1px solid #1c231530;
+  border-top: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
   font-size: 9px;
@@ -823,7 +800,7 @@ p {
 .footer > div {
   margin-left: auto;
   display: flex;
-  gap: 20px;
+  gap: var(--space-5);
   font-size: 10px;
   color: var(--muted);
   align-items: center;
@@ -838,20 +815,20 @@ p {
   color: var(--muted);
 }
 dialog {
-  background: #20241b;
+  background: var(--surface);
   color: var(--ink);
-  border: 1px solid #ffffff25;
+  border: 1px solid var(--line);
   padding: 55px;
   max-width: min(650px, 92vw);
   max-height: 90svh;
   overflow: auto;
 }
 dialog::backdrop {
-  background: #080b08df;
+  background: var(--color-overlay);
   backdrop-filter: blur(12px);
 }
 dialog[open] {
-  animation: dialog-enter 300ms var(--ease);
+  animation: dialog-enter var(--motion-control) var(--ease);
 }
 .dialog-close {
   display: block;
@@ -869,13 +846,13 @@ dialog h2 {
 }
 dialog p {
   font-size: 14px;
-  margin-top: 16px;
+  margin-top: var(--space-4);
 }
 #lightbox {
   padding: 20px;
   max-width: 90vw;
   width: 730px;
-  background: #141711;
+  background: var(--bg);
 }
 #lightbox > img {
   max-height: 65svh;
@@ -919,7 +896,7 @@ dialog p {
 }
 .legal p {
   font-size: 15px;
-  color: #c4c7bd;
+  color: var(--muted);
   margin: 15px 0;
 }
 .legal a {
@@ -1078,7 +1055,7 @@ dialog p {
     text-align: left;
   }
   .gallery-grid {
-    gap: 20px;
+    gap: var(--space-5);
   }
   .footer > p {
     display: none;
@@ -1124,10 +1101,10 @@ dialog p {
     padding: 35px 6%;
     flex-direction: column;
     gap: 0;
-    animation: dialog-enter 250ms var(--ease);
+    animation: dialog-enter var(--motion-hover) var(--ease);
   }
   .mobile-menu a {
-    font-family: "Space Grotesk Variable";
+    font-family: var(--font-display);
     font-size: 40px;
     border-bottom: 1px solid var(--line);
     padding: 17px 0;
@@ -1161,14 +1138,14 @@ dialog p {
   }
   .hero-title {
     font-size: 25vw;
-    padding-top: 40px;
+    padding-top: var(--space-10);
     width: 100%;
     line-height: 0.83;
     z-index: 3;
   }
   .title-period {
     font-size: 13px;
-    margin-top: 8px;
+    margin-top: var(--space-2);
   }
   .record-stage {
     width: 94%;
@@ -1181,10 +1158,7 @@ dialog p {
     width: 91%;
     top: 3%;
     left: 4%;
-    box-shadow:
-      5px 8px 0 #494e3f,
-      7px 12px 0 #171b14,
-      15px 30px 40px #0008;
+    box-shadow: var(--shadow-vinyl-mobile);
     transform: rotateX(37deg) rotateY(-20deg) rotateZ(-24deg);
   }
   .record-label b {
@@ -1210,7 +1184,7 @@ dialog p {
     display: none;
   }
   .round-link {
-    gap: 12px;
+    gap: var(--space-3);
   }
   .round-link > span {
     max-width: 70px;
@@ -1259,7 +1233,7 @@ dialog p {
   }
   .intro-copy {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: var(--space-5);
     margin-top: 30px;
   }
   .intro-copy p:first-child {
@@ -1329,7 +1303,7 @@ dialog p {
   .sound-grid {
     grid-template-columns: 1fr;
     gap: 45px;
-    padding-top: 40px;
+    padding-top: var(--space-10);
   }
   .sound-intro h2 {
     font-size: 68px;
@@ -1407,7 +1381,7 @@ dialog p {
   .gallery-caption {
     font-size: 11px;
     gap: 10px;
-    margin-top: 12px;
+    margin-top: var(--space-3);
   }
   .gallery-item > .micro {
     font-size: 6px;
@@ -1419,7 +1393,7 @@ dialog p {
     right: 10px;
   }
   .booking > p {
-    margin-top: 40px;
+    margin-top: var(--space-10);
     font-size: 12px;
   }
   .booking h2 {
@@ -1433,7 +1407,7 @@ dialog p {
   }
   .booking-bottom {
     font-size: 7px;
-    gap: 20px;
+    gap: var(--space-5);
     margin-top: 45px;
   }
   .booking-bottom > span:last-child {
@@ -1447,7 +1421,7 @@ dialog p {
   .footer > div {
     margin-left: 0;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: var(--space-5);
   }
   .footer > .micro {
     font-size: 7px;
@@ -1519,10 +1493,10 @@ dialog p {
   navigation: auto;
 }
 ::view-transition-old(root) {
-  animation: page-out 180ms ease both;
+  animation: page-out var(--fast) ease both;
 }
 ::view-transition-new(root) {
-  animation: page-in 350ms var(--ease) both;
+  animation: page-in var(--motion-dialog) var(--ease) both;
 }
 @keyframes page-out {
   to {
@@ -1540,30 +1514,48 @@ dialog p {
     transform: none;
   }
 }
-@font-face {
-  font-family: "Space Grotesk Variable";
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url("/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Manrope Variable";
-  font-style: normal;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url("/fonts/manrope-latin-wght-normal.woff2") format("woff2");
-}
+
 /* Keep perspective decoration from expanding the mobile visual viewport. */
 .hero {
   overflow: clip;
 }
 /* Keep observed card bounds visible; animate masks on their artwork children. */
-.artist-art, .gallery-item > div { transition: clip-path var(--reveal) var(--ease) var(--delay, 0ms); }
-.js-motion .artist-card:not(.is-visible) { opacity:1; transform:translateY(20px); clip-path:none; }
-.js-motion .artist-card:not(.is-visible) .artist-art { clip-path:inset(0 0 100% 0); }
-.js-motion .gallery-item:not(.is-visible) { opacity:1; transform:none; clip-path:none; }
-.js-motion .gallery-item:not(.is-visible) > div { clip-path:inset(0 100% 0 0); }
-.js-motion .event-row:not(.is-visible) {transform:translateX(-20px);clip-path:inset(0);}
-.motion-paused .artist-art, .motion-paused .gallery-item > div {clip-path:none!important;}
-@media(prefers-reduced-motion:reduce){.js-motion .artist-card:not(.is-visible),.js-motion .gallery-item:not(.is-visible),.js-motion .event-row:not(.is-visible),.js-motion .artist-card:not(.is-visible) .artist-art,.js-motion .gallery-item:not(.is-visible)>div{opacity:1;transform:none;clip-path:none;}}
+.artist-art,
+.gallery-item > div {
+  transition: clip-path var(--reveal) var(--ease) var(--delay, 0ms);
+}
+.js-motion .artist-card:not(.is-visible) {
+  opacity: 1;
+  transform: translateY(20px);
+  clip-path: none;
+}
+.js-motion .artist-card:not(.is-visible) .artist-art {
+  clip-path: inset(0 0 100% 0);
+}
+.js-motion .gallery-item:not(.is-visible) {
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+}
+.js-motion .gallery-item:not(.is-visible) > div {
+  clip-path: inset(0 100% 0 0);
+}
+.js-motion .event-row:not(.is-visible) {
+  transform: translateX(-20px);
+  clip-path: inset(0);
+}
+.motion-paused .artist-art,
+.motion-paused .gallery-item > div {
+  clip-path: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-motion .artist-card:not(.is-visible),
+  .js-motion .gallery-item:not(.is-visible),
+  .js-motion .event-row:not(.is-visible),
+  .js-motion .artist-card:not(.is-visible) .artist-art,
+  .js-motion .gallery-item:not(.is-visible) > div {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}

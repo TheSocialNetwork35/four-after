@@ -3,21 +3,11 @@ import { brand } from "../data/collective";
 ---
 
 <a class="brand" href="/" title="FOUR / AFTER – Startseite">
-  {
-    brand.logo ? (
-      <img src={brand.logo} width="120" height="32" alt={brand.name} />
-    ) : (
-      <>
-        <>
-          <span class="brand-symbol" aria-hidden="true">
-            f/a
-          </span>
-          <span>
-            FOUR /<br />
-            AFTER
-          </span>
-        </>
-      </>
-    )
-  }
+  <img
+    class="brand-wordmark"
+    src={brand.logo ?? "/brand/wordmark-light.svg"}
+    width="339"
+    height="54"
+    alt={brand.name}
+  />
 </a>

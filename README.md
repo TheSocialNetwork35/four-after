@@ -26,7 +26,12 @@ Astro static output, strict TypeScript, custom CSS motion and a small vanilla Ty
 - `src/components/EventRow.astro`: reusable event row. Add confirmed date/venue/city/ticket URL in the data; set `example: false` and update the section's preview note when publishing real dates.
 - `src/pages/index.astro`: section headings, layout, status notes and contact dialog.
 - `src/pages/artists/[slug].astro`: all four individual profiles generated from data.
-- `src/styles/global.css`: palette, type, grid, mobile layouts, motion tokens and transitions.
+- `src/styles/tokens.css`: central palette, typography, spacing, radii, shadows and motion tokens.
+- `src/styles/brand.css`: Signal / Sleeve identity, paper panels, wordmark sizing and UI treatments.
+- `src/styles/fonts.css`: self-hosted font declarations.
+- `src/styles/global.css`: existing grid, mobile layouts and transitions.
+- `public/brand/`: outlined wordmarks in light/dark and horizontal/stacked variants; four-stroke brandmark.
+- `docs/BRAND.md`: moodboard interpretation, usage guidance and regeneration instructions.
 - `src/scripts/experience.ts`: menu focus management, scroll reveals, vinyl pointer interaction, dialogs, gallery keyboard controls, motion preference and opt-in sound.
 - `src/pages/impressum.astro` and `datenschutz.astro`: clearly identified legal placeholders. Supply the real operator information and check applicable requirements.
 - `public/og.png`, `og-source.svg`, `favicon.svg`: social preview and icon.
@@ -51,8 +56,12 @@ Branding, artist bios/genres, mix titles, and event concepts are editable propos
 
 ## Artwork and fonts
 
-Artworks are generated specifically for this project using `scripts/generate-art.mjs`; SVGs are the editable masters. WebP delivery versions are generated with Sharp. Font files are self-hosted Space Grotesk and Manrope, distributed under the SIL Open Font License; licenses are in `public/fonts/`.
+Artworks are generated specifically for this project using `scripts/generate-art.mjs`; SVGs are the editable masters. WebP delivery versions are generated with Sharp. Font files are self-hosted Inter Tight and IBM Plex Mono, distributed under the SIL Open Font License; licenses are in `public/fonts/`.
 
 ## Motion and accessibility
 
 `--ease`, `--fast`, `--reveal` define the shared motion language. Native cross-document view transitions enhance profile navigation in supporting browsers. Other browsers use normal navigation. Reduced-motion disables all animation and smooth scrolling. A footer control pauses motion for the current page. Native dialogs trap focus, support Escape and restore focus. The gallery supports arrow keys. Mobile navigation includes a focus loop and Escape support. No autoplay audio.
+
+## Branding update
+
+The September 2026 **Signal / Sleeve** redesign follows the supplied vinyl/editorial moodboard: carbon black, warm paper, controlled signal red, Inter Tight and IBM Plex Mono. See [brand guidelines](docs/BRAND.md). Run `npm run brand:generate` after changing primitive color tokens to update all generated assets.

@@ -1,11 +1,15 @@
 import fs from "node:fs";
+import sharp from "sharp";
+const tokens = fs.readFileSync("src/styles/tokens.css", "utf8");
+const color = (name) =>
+  tokens.match(new RegExp(`--color-${name}:\\s*(#[0-9a-f]+)`))[1];
 const palettes = [
-  ["#aaa9a2", "#5c6660"],
-  ["#c0c6a0", "#334536"],
-  ["#9d9b9a", "#4f4150"],
-  ["#b7b3a2", "#454d5a"],
-  ["#d3d1b8", "#5f6253"],
-  ["#a8b19f", "#4b544a"],
+  [color("silver"), color("charcoal")],
+  [color("paper"), color("graphite")],
+  [color("silver"), color("carbon")],
+  [color("paper-deep"), color("charcoal")],
+  [color("signal"), color("vinyl-dark")],
+  [color("paper"), color("charcoal")],
 ];
 for (let i = 1; i <= 6; i++) {
   const [a, b] = palettes[i - 1];
@@ -22,6 +26,11 @@ for (let i = 1; i <= 6; i++) {
   }
   fs.writeFileSync(
     `public/art/0${i}.svg`,
-    `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><defs><radialGradient id="bg"><stop stop-color="${b}"/><stop offset="1" stop-color="#111411"/></radialGradient><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${b}"/><stop offset=".4" stop-color="${a}"/><stop offset=".5" stop-color="#eee9d9"/><stop offset=".7" stop-color="${b}"/><stop offset="1" stop-color="${a}"/></linearGradient><filter id="grain"><feTurbulence baseFrequency=".62" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><path fill="url(#bg)" d="M0 0h800v1000H0z"/>${shapes}<path fill="#aaa" opacity=".065" filter="url(#grain)" d="M0 0h800v1000H0z"/></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><defs><radialGradient id="bg"><stop stop-color="${b}"/><stop offset="1" stop-color="${color("carbon")}"/></radialGradient><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${b}"/><stop offset=".4" stop-color="${a}"/><stop offset=".5" stop-color="${color("chalk")}"/><stop offset=".7" stop-color="${b}"/><stop offset="1" stop-color="${a}"/></linearGradient><filter id="grain"><feTurbulence baseFrequency=".62" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><path fill="url(#bg)" d="M0 0h800v1000H0z"/>${shapes}<path fill="#aaa" opacity=".065" filter="url(#grain)" d="M0 0h800v1000H0z"/></svg>`,
   );
 }
+
+for (let i = 1; i <= 6; i++)
+  await sharp(`public/art/0${i}.svg`)
+    .webp({ quality: 85 })
+    .toFile(`public/art/0${i}.webp`);

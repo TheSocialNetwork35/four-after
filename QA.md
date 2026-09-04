@@ -43,3 +43,16 @@ Separate Chrome DevTools production trace, unthrottled repeat navigation: LCP 11
 The shared booking email, operator/legal details, confirmed events, actual mixes/social links, final branding and portraits remain intentionally pending. No invented personal information or nonfunctional fake ticket links are published. The original vector artworks are explicitly presented as art studies.
 
 Real hardware testing and a full manual accessibility audit are outside these automated checks. View transitions gracefully fall back in browsers that do not support them.
+
+## Branding revision — 5 September 2026
+
+Signal / Sleeve identity: carbon/paper/red palette, Inter Tight + IBM Plex Mono, outlined wordmark variants, four-stroke brandmark, updated vinyl/artworks/social preview, squared UI controls. Content, routes and the existing interaction architecture are retained.
+
+- Production build: 0 errors, warnings or hints; 8 pages generated.
+- Seven responsive sizes rechecked (320–1440 px, tablet and landscape): no horizontal overflow.
+- Menu/Escape/focus return, Yannis → Cian profile navigation, event reveals, gallery arrows/focus return, booking dialog and audio toggle rechecked.
+- Reduced motion: 0 running animations and all artwork masks disabled.
+- Lighthouse against the local production build: Performance 98; Accessibility 100; Best Practices 100; SEO 100; CLS 0; TBT 0 ms. These are lab measurements, not field results.
+- SVG wordmarks are self-contained outlined paths; website fonts are local and load successfully.
+- Generated assets are reproducible via `npm run brand:generate`; all styling colors are centralized in `src/styles/tokens.css`.
+- A rapid automated sequence of navigations produced a browser-native view-transition cancellation. Normal paced navigation is tested separately; this cancellation does not block navigation.

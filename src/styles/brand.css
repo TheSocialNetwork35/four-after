@@ -1,0 +1,377 @@
+/* Identity-specific compositions. Layout, content and interaction live in their existing modules. */
+.brand-wordmark {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.brand-mark {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.header {
+  margin-inline: var(--gutter);
+}
+.desktop-nav {
+  font-family: var(--font-meta);
+  font-size: 10px;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+.booking-link {
+  font-family: var(--font-meta);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.booking-link span {
+  color: var(--accent);
+}
+.hero-title {
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.79;
+  font-size: clamp(120px, 21vw, 330px);
+}
+.title-slash {
+  font-weight: 300;
+  margin-left: 0.03em;
+  color: var(--accent);
+}
+.title-period {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0;
+  margin-top: 12px;
+  margin-left: 12px;
+  color: var(--muted);
+}
+.hero-top .live-dot {
+  box-shadow: none;
+  border-radius: 0;
+  width: 5px;
+  height: 5px;
+}
+.hero-bottom > p {
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.record-label > span,
+.record-label small {
+  font-family: var(--font-meta);
+  font-size: clamp(5px, 0.55vw, 9px);
+  letter-spacing: 0.025em;
+}
+.record-label .brand-mark {
+  color: var(--color-carbon);
+}
+.record-label i {
+  border-color: var(--color-silver);
+}
+.record-coordinate {
+  font-size: 9px;
+  right: 7%;
+}
+.orbit {
+  opacity: 0.4;
+}
+.orbit-two {
+  display: none;
+}
+.frequency-strip {
+  font-family: var(--font-meta);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  background: var(--color-carbon);
+  color: var(--color-silver);
+}
+.frequency-strip span:nth-child(even) {
+  color: var(--accent);
+}
+.asterisk {
+  width: 120px;
+  height: 95px;
+  color: var(--accent-text);
+}
+.statement {
+  font-weight: 400;
+  line-height: 0.99;
+}
+.section-label > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.section-label > span:first-child::before {
+  content: "";
+  display: block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--accent-text);
+}
+.paper-section .collective-facts {
+  color: var(--muted);
+}
+.paper-section h2 span {
+  color: var(--muted);
+}
+.art-number,
+.art-caption {
+  color: var(--color-paper);
+}
+.artist-art {
+  border: var(--border);
+}
+.artist-open {
+  transform: none;
+  border-radius: var(--radius-control);
+  background: var(--color-paper);
+  color: var(--color-carbon);
+}
+.artist-card:hover .artist-open {
+  transform: translate(2px, -2px);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.artist-info h3 {
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: -0.035em;
+}
+.artist-info > span {
+  font-size: 9px;
+}
+.artist-card:hover img {
+  filter: brightness(1.06);
+}
+.sound-intro h2 em {
+  color: var(--accent-text);
+  font-style: normal;
+}
+.sound .mix-soon {
+  color: var(--accent-text);
+}
+.mix-card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 115px;
+  height: 115px;
+  flex-shrink: 0;
+}
+.mix-card > div {
+  min-width: 0;
+}
+.mix-card h3 {
+  font-weight: 450;
+}
+.pill {
+  font-family: var(--font-meta);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  min-height: 48px;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-control);
+}
+.pill:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--on-accent);
+}
+.pill:active {
+  background: var(--active);
+  border-color: var(--active);
+  color: var(--on-accent);
+}
+.round-link i {
+  border-radius: var(--radius-control);
+}
+.round-link:hover i {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.waveform i {
+  opacity: 0.7;
+}
+.event-date > span {
+  color: var(--accent);
+}
+.event-status span {
+  color: var(--accent);
+}
+.gallery-plus {
+  border-radius: var(--radius-control);
+  background: var(--color-carbon);
+  color: var(--color-paper);
+  border-color: var(--line);
+}
+.gallery-item:hover .gallery-plus {
+  background: var(--accent);
+  color: var(--on-accent);
+  transform: rotate(90deg);
+}
+.gallery-heading h2 em {
+  font-style: normal;
+  color: var(--muted);
+}
+.booking {
+  border-top: 4px solid var(--accent);
+}
+.booking h2 {
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+.booking h2 span {
+  color: var(--ink);
+}
+.booking h2 i {
+  color: var(--accent-text);
+  font-weight: 300;
+}
+.booking-cta {
+  font-size: 11px;
+}
+.footer {
+  padding-inline: var(--gutter);
+}
+.footer > .brand {
+  width: 220px;
+}
+.footer > div {
+  font-family: var(--font-meta);
+  font-size: 9px;
+}
+.footer button {
+  font-family: inherit;
+  font-size: inherit;
+}
+.footer a:hover,
+.footer button:hover {
+  color: var(--accent);
+}
+dialog {
+  border-radius: var(--radius-dialog);
+  box-shadow: var(--shadow-dialog);
+}
+.profile h1 {
+  font-weight: 400;
+}
+.profile-grid > img {
+  border: var(--border);
+}
+.profile-next {
+  font-weight: 400;
+}
+.profile-next:hover {
+  color: var(--accent);
+}
+@media (max-width: 1000px) {
+  .artist-info h3 {
+    font-size: 30px;
+  }
+  .mix-card img {
+    width: 85px;
+    height: 85px;
+  }
+}
+@media (max-width: 650px) {
+  .brand {
+    width: 164px;
+  }
+  .footer > .brand {
+    width: 210px;
+  }
+  .hero-title {
+    font-size: 27vw;
+    line-height: 0.82;
+    padding-top: 42px;
+    letter-spacing: -0.06em;
+  }
+  .title-period {
+    font-size: 8px;
+    margin-top: 7px;
+    margin-left: 5px;
+  }
+  .menu-button {
+    font-family: var(--font-meta);
+    font-size: 10px;
+  }
+  .mobile-menu a {
+    font-weight: 400;
+    letter-spacing: -0.04em;
+  }
+  .mobile-menu a:last-child {
+    color: var(--accent);
+  }
+  .record-label > span,
+  .record-label small {
+    font-size: 5px;
+  }
+  .record-label b {
+    width: 42%;
+    height: 42%;
+  }
+  .record-coordinate {
+    font-size: 7px;
+    right: 7%;
+    bottom: 13%;
+  }
+  .asterisk {
+    width: 67px;
+    height: 52px;
+  }
+  .section-label {
+    font-size: 8px;
+  }
+  .section-label > span:first-child {
+    gap: var(--space-2);
+  }
+  .artist-info h3 {
+    font-size: 28px;
+  }
+  .artist-info > span {
+    font-size: 8px;
+  }
+  .art-number {
+    font-size: 8px;
+  }
+  .art-caption {
+    font-size: 6px;
+  }
+  .mix-card {
+    gap: var(--space-4);
+  }
+  .mix-card img {
+    width: 84px;
+    height: 84px;
+  }
+  .mix-card h3 {
+    font-size: 23px;
+  }
+  .mix-card .micro {
+    font-size: 7px;
+  }
+  .mix-soon {
+    flex-shrink: 0;
+  }
+  .booking h2 {
+    font-size: 13.1vw;
+  }
+  .footer > div {
+    font-size: 9px;
+  }
+}
+@media (max-width: 350px) {
+  .mix-card img {
+    width: 62px;
+    height: 62px;
+  }
+  .mix-card h3 {
+    font-size: 20px;
+  }
+  .mix-card {
+    gap: var(--space-3);
+  }
+  .mix-card .micro {
+    font-size: 6px;
+  }
+}

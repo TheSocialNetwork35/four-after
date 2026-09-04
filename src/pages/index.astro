@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EventRow from "../components/EventRow.astro";
+import BrandMark from "../components/BrandMark.astro";
 import MixCard from "../components/MixCard.astro";
 import {
   brand,
@@ -28,7 +29,7 @@ import {
         </div><div class="record">
           <div class="record-surface">
             <div class="record-label">
-              <span>FOUR / AFTER</span><b>f/a</b><small>
+              <span>FOUR / AFTER</span><b><BrandMark/></b><small>
                 SIDE A · 33⅓ RPM
               </small><i></i>
             </div>
@@ -48,17 +49,17 @@ import {
       </div><span class="hero-index micro">01 — IN STEREO</span>
     </section>
     <div class="frequency-strip" aria-hidden="true">
-      <span>NO EGO. JUST ENERGY.</span><span>✳</span><span>
+      <span>NO EGO. JUST ENERGY.</span><span>/</span><span>
         FOUR MINDS. ONE FREQUENCY.
-      </span><span>✳</span><span>FROM DUSK TO AFTER.</span><span>✳</span>
+      </span><span>/</span><span>FROM DUSK TO AFTER.</span><span>/</span>
     </div>
-    <section id="collective" class="section collective">
+    <section id="collective" class="section collective paper-section">
       <div class="section-label micro">
         <span>01 / THE COLLECTIVE</span><span>
           Different minds. Shared nights.
         </span>
       </div><div class="intro-grid">
-        <div class="asterisk" aria-hidden="true">✳</div><div>
+        <div class="asterisk" aria-hidden="true"><BrandMark/></div><div>
           <h2 class="statement reveal">
             Vier Köpfe.<br />Ein Gefühl.<br /><span>Alles dazwischen.</span>
           </h2><div class="intro-copy reveal">
@@ -117,7 +118,7 @@ import {
         Soundrichtungen & Artworks sind vorläufige Profilentwürfe.
       </p>
     </section>
-    <section id="sound" class="section sound">
+    <section id="sound" class="section sound paper-section">
       <div class="section-label micro">
         <span>03 / ON ROTATION</span><span>Less talk. More listening.</span>
       </div><div class="sound-grid">
@@ -206,7 +207,7 @@ import {
         Eigene digitale Artworks. Hier entsteht später unser Fotoarchiv.
       </p>
     </section>
-    <section id="booking" class="section booking">
+    <section id="booking" class="section booking paper-section">
       <div class="section-label micro">
         <span>06 / MAKE IT HAPPEN</span><span>
           Good nights start with a conversation
