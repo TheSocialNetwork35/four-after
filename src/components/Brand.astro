@@ -1,0 +1,23 @@
+---
+import { brand } from "../data/collective";
+---
+
+<a class="brand" href="/" aria-label="FOUR / AFTER – Startseite"
+  >{
+    brand.logo ? (
+      <img src={brand.logo} width="120" height="32" alt={brand.name} />
+    ) : (
+      <>
+        <>
+          <span class="brand-symbol" aria-hidden="true">
+            f/a
+          </span>
+          <span>
+            FOUR /<br />
+            AFTER
+          </span>
+        </>
+      </>
+    )
+  }</a
+>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.env*
+.dev.vars*
+output/
+.playwright-cli/
+scripts/cloudflare-project.mjs
+.DS_Store

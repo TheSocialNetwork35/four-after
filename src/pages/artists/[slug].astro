@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { artists } from "../../data/collective";
+export function getStaticPaths() {
+  return artists.map((artist, index) => ({
+    params: { slug: artist.slug },
+    props: { artist, next: artists[(index + 1) % artists.length] },
+  }));
+}
+const { artist, next } = Astro.props;
+---
+
+<Layout title={`${artist.name} — FOUR / AFTER`}
+  ><main id="main" class="profile">
+    <a class="micro" href="/#artists">← Alle Artists</a><div
+      class="profile-grid"
+    >
+      <img
+        src={artist.image}
+        alt={`Abstraktes Artwork für ${artist.name}`}
+        width="800"
+        height="1000"
+      /><div>
+        <span class="micro">THE COLLECTIVE / {artist.number}</span><h1>
+          {artist.name}
+        </h1><span class="micro">{artist.style}</span><p>{artist.bio}</p><p
+          class="content-note"
+        >
+          Vorläufiger Profiltext & Stilvorschlag. Das Artwork wird später durch
+          ein Portrait oder finale Visuals ersetzt.
+        </p>{
+          artist.links.length ? (
+            artist.links.map((link) => (
+              <a
+                class="pill"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label} ↗
+              </a>
+            ))
+          ) : (
+            <p class="micro">SOCIALS & MUSIC LINKS — COMING SOON</p>
+          )
+        }<a class="pill" href="/#booking">Booking & Kontakt ↗</a><a
+          class="profile-next"
+          href={`/artists/${next.slug}/`}>Next frequency: {next.name} ↗</a>
+      </div>
+    </div>
+  </main></Layout
+>

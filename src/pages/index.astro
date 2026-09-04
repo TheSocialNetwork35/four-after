@@ -1,0 +1,280 @@
+---
+import Layout from "../layouts/Layout.astro";
+import EventRow from "../components/EventRow.astro";
+import {
+  brand,
+  artists,
+  copy,
+  mixes,
+  events,
+  gallery,
+} from "../data/collective";
+---
+
+<Layout
+  ><main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-top micro">
+        <span><i class="live-dot"></i> Independent DJ collective</span><span
+          >Yannis · Cian · Maxim · Thierry</span>
+      </div><h1 id="hero-title" class="hero-title">
+        <span>FOUR<span class="title-slash">/</span></span><span
+          >AFTER<span class="title-period">04</span></span>
+      </h1><div class="record-stage" aria-label="Interaktive Vinyl-Skulptur">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two">
+        </div><div class="record">
+          <div class="record-surface">
+            <div class="record-label">
+              <span>FOUR / AFTER</span><b>f/a</b><small>SIDE A · 33⅓ RPM</small
+              ><i></i>
+            </div>
+          </div>
+        </div><span class="record-coordinate micro"
+          >FA—001<br />A shared frequency</span>
+      </div><div class="hero-bottom">
+        <p>Four minds.<br /><span>One frequency.</span></p><a
+          class="round-link"
+          href="#collective"><span>Enter the collective</span><i>↓</i></a
+        ><span class="micro hero-note"
+          >For the moments<br />that become the night.</span>
+      </div><span class="hero-index micro">01 — IN STEREO</span>
+    </section>
+    <div class="frequency-strip" aria-hidden="true">
+      <span>NO EGO. JUST ENERGY.</span><span>✳</span><span
+        >FOUR MINDS. ONE FREQUENCY.</span
+      ><span>✳</span><span>FROM DUSK TO AFTER.</span><span>✳</span>
+    </div>
+    <section id="collective" class="section collective">
+      <div class="section-label micro">
+        <span>01 / THE COLLECTIVE</span><span
+          >Different minds. Shared nights.</span>
+      </div><div class="intro-grid">
+        <div class="asterisk" aria-hidden="true">✳</div><div>
+          <h2 class="statement reveal">
+            Vier Köpfe.<br />Ein Gefühl.<br /><span>Alles dazwischen.</span>
+          </h2><div class="intro-copy reveal">
+            <p>{copy.intro}</p><p>{copy.body}</p>
+          </div>
+        </div>
+      </div><div class="collective-facts micro">
+        <span>01—04 / SELECTORS</span><span>NO BOUNDARIES / JUST SOUND</span
+        ><span>ALWAYS IN GOOD COMPANY ↗</span>
+      </div>
+    </section>
+    <section id="artists" class="section artists">
+      <div class="section-label micro">
+        <span>02 / THE PEOPLE</span><span>The ones behind the sound</span>
+      </div><div class="section-heading reveal">
+        <h2>Individual minds.<br /><span>Collective energy.</span></h2><p>
+          Vier eigene Handschriften.<br />Eine gemeinsame Richtung.
+        </p>
+      </div><div class="artist-grid">
+        {
+          artists.map((artist, i) => (
+            <a
+              href={`/artists/${artist.slug}/`}
+              class="artist-card reveal"
+              style={`--delay:${i * 75}ms`}
+            >
+              <>
+                <div class="artist-art">
+                  <>
+                    <img
+                      src={artist.image}
+                      alt={`Abstrakte Artwork-Studie für ${artist.name}`}
+                      width="800"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="art-number micro">F/A — {artist.number}</span>
+                    <span class="artist-open" aria-hidden="true">
+                      ↗
+                    </span>
+                    <span class="art-caption micro">VISUAL IDENTITY STUDY</span>
+                  </>
+                </div>
+                <div class="artist-info">
+                  <>
+                    <h3>{artist.name}</h3>
+                    <span class="micro">{artist.style}</span>
+                  </>
+                </div>
+              </>
+            </a>
+          ))
+        }
+      </div><p class="content-note">
+        Soundrichtungen & Artworks sind vorläufige Profilentwürfe.
+      </p>
+    </section>
+    <section id="sound" class="section sound">
+      <div class="section-label micro">
+        <span>03 / ON ROTATION</span><span>Less talk. More listening.</span>
+      </div><div class="sound-grid">
+        <div class="sound-intro">
+          <h2 class="reveal">Stay a little<br /><em>longer.</em></h2><p>
+            Für den Weg in die Nacht.<br />Und alles, was danach kommt.
+          </p><div class="sound-lab">
+            <button id="sound-toggle" class="pill" aria-pressed="false"
+              ><span class="sound-icon" aria-hidden="true">▥</span> Sound experiment
+              starten</button
+            ><p class="micro">GENERATIVER AMBIENT-LOOP · KEIN DJ-SET</p><div
+              class="waveform"
+              aria-hidden="true"
+            >
+              {
+                Array.from({ length: 48 }, (_, i) => (
+                  <i
+                    style={`--bar:${15 + Math.sin(i * 1.7) ** 2 * 85}%;--delay:${i * 37}ms`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div><div class="mixes">
+          {
+            mixes.map((mix) => (
+              <article class="mix-card reveal">
+                <div>
+                  <>
+                    <span class="micro">F/A SELECTS — {mix.number}</span>
+                    <h3>{mix.title}</h3>
+                    <p>{mix.artist}</p>
+                    <span class="micro muted">{mix.mood}</span>
+                  </>
+                </div>
+                {mix.url ? (
+                  <a
+                    href={mix.url}
+                    aria-label={`${mix.title} anhören`}
+                    class="mix-play"
+                  >
+                    ↗
+                  </a>
+                ) : (
+                  <span class="micro mix-soon">
+                    COMING
+                    <br />
+                    SOON
+                  </span>
+                )}
+              </article>
+            ))
+          }<p class="content-note">
+            Die ersten Mixes folgen. Cover & Titel sind Vorschauen.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="events" class="section events">
+      <div class="section-label micro">
+        <span>04 / MEET US THERE</span><span>Offline is where it happens</span>
+      </div><div class="section-heading reveal">
+        <h2>See you<br /><span>on the other side.</span></h2><p>
+          Neue Nächte sind in Arbeit.<br />Die nächsten Termine folgen hier.
+        </p>
+      </div><div class="event-list">
+        {events.map((event) => <EventRow event={event} />)}
+      </div><p class="content-note">
+        Programm-Vorschau — noch keine bestätigten Veranstaltungen.
+      </p>
+    </section>
+    <section id="gallery" class="section gallery">
+      <div class="section-label micro">
+        <span>05 / AFTER IMAGES</span><span>Fragments of a feeling</span>
+      </div><div class="gallery-heading">
+        <h2 class="reveal">Not everything<br />needs <em>words.</em></h2><p
+          class="micro"
+        >
+          ART DIRECTION STUDIES / 001—003
+        </p>
+      </div><div class="gallery-grid">
+        {
+          gallery.map((item, i) => (
+            <button
+              class="gallery-item reveal"
+              data-gallery-src={item.image}
+              data-gallery-title={item.title}
+              aria-label={`${item.title} vergrößern`}
+            >
+              <>
+                <div>
+                  <>
+                    <img
+                      src={item.image}
+                      alt={item.title + " – abstrakte Lichtstudie"}
+                      width="800"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="gallery-plus">＋</span>
+                  </>
+                </div>
+                <span class="gallery-caption">
+                  <>
+                    <span>{item.title}</span>
+                    <small>0{i + 1}</small>
+                  </>
+                </span>
+                <span class="micro muted">{item.note}</span>
+              </>
+            </button>
+          ))
+        }
+      </div><p class="content-note">
+        Eigene digitale Artworks. Hier entsteht später unser Fotoarchiv.
+      </p>
+    </section>
+    <section id="booking" class="section booking">
+      <div class="section-label micro">
+        <span>06 / MAKE IT HAPPEN</span><span
+          >Good nights start with a conversation</span>
+      </div><p class="reveal">Ein Club. Ein Festival. Eine gute Idee.</p><h2
+        class="reveal"
+      >
+        LET’S MAKE<br /><span>A NIGHT.</span><i aria-hidden="true">↗</i>
+      </h2>{
+        brand.email ? (
+          <a class="pill booking-cta" href={`mailto:${brand.email}`}>
+            Booking anfragen ↗
+          </a>
+        ) : (
+          <button class="pill booking-cta" data-booking>
+            Booking & Kontakt <span>↗</span>
+          </button>
+        )
+      }<div class="booking-bottom micro">
+        <span>YANNIS / CIAN / MAXIM / THIERRY</span><span
+          >FOUR MINDS. ONE FREQUENCY.</span>
+      </div>
+    </section>
+  </main>
+  <dialog id="lightbox" aria-labelledby="lightbox-title">
+    <button class="dialog-close" aria-label="Galerie schließen"
+      >Schließen ×</button
+    ><img
+      id="lightbox-image"
+      src="/art/01.webp"
+      alt=""
+      width="800"
+      height="1000"
+    /><div class="lightbox-footer">
+      <button data-gallery-prev aria-label="Vorheriges Bild">←</button><h2
+        id="lightbox-title"
+      >
+      </h2><button data-gallery-next aria-label="Nächstes Bild">→</button>
+    </div>
+  </dialog>
+  <dialog id="booking-dialog" aria-labelledby="booking-title">
+    <button class="dialog-close" aria-label="Kontakt schließen"
+      >Schließen ×</button
+    ><span class="micro">LET’S CONNECT</span><h2 id="booking-title">
+      Die nächste Nacht<br />beginnt hier.
+    </h2><p>
+      Unser gemeinsamer Booking-Kontakt wird gerade eingerichtet. Wenn du
+      Yannis, Cian, Maxim oder Thierry bereits kennst, schreib uns gerne direkt.
+    </p><p class="muted">
+      Die offizielle Kontaktadresse folgt in Kürze.
+    </p><button class="pill dialog-dismiss">Alles klar ↗</button>
+  </dialog>
+</Layout>
