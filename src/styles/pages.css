@@ -825,6 +825,7 @@ h2 {
   font-size: 9px;
 }
 .profile-split .artist-profile-hero {
+  --focus: var(--color-signal-ink);
   background: var(--color-paper);
   color: var(--color-carbon);
 }
@@ -870,6 +871,7 @@ h2 {
   color: var(--color-paper);
 }
 .profile-offset .artist-profile-hero {
+  --focus: var(--color-signal-ink);
   background: var(--color-paper);
   color: var(--color-carbon);
 }

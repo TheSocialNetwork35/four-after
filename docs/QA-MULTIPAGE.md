@@ -25,3 +25,9 @@
 ## Scope
 
 Chromium desktop/mobile emulation was tested, including touch and reduced motion. Physical iOS/Safari and Android devices were not available. All public photos and proposed bios, events and sessions remain clearly identified placeholders; no invented ticket, audio or contact URLs are used.
+
+## Production verification
+
+Native Cloudflare GitHub deployment succeeded. All 17 content URLs returned HTTP 200; image requests succeeded, and no browser console/runtime errors or horizontal overflow were found in the production sweep. Gallery reload returned 200, filter/lightbox/menu navigation worked, and Back restored the gallery without a scroll lock. An unknown URL returned the custom HTTP 404 page. Clipboard brief and legacy homepage hash redirects were also exercised locally.
+
+Production mobile Lighthouse: **97 Performance / 100 Accessibility / 100 Best Practices / 100 SEO**, LCP 2.4 s, CLS 0, TBT 0 ms. Desktop menu focus trapping and touch gallery swipes passed. Paper artist hero focus indicators use dark signal red for contrast.
