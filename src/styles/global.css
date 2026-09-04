@@ -1558,27 +1558,12 @@ dialog p {
 .hero {
   overflow: clip;
 }
-/* Section-specific reveals: artwork wipes, gallery shutters, and quiet text lifts. */
-.js-motion .artist-card:not(.is-visible) {
-  opacity: 1;
-  transform: translateY(20px);
-  clip-path: inset(0 0 100% 0);
-}
-.js-motion .gallery-item:not(.is-visible) {
-  opacity: 1;
-  transform: translateY(0);
-  clip-path: inset(0 100% 0 0);
-}
-.js-motion .event-row:not(.is-visible) {
-  transform: translateX(-20px);
-  clip-path: inset(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  .js-motion .artist-card:not(.is-visible),
-  .js-motion .gallery-item:not(.is-visible),
-  .js-motion .event-row:not(.is-visible) {
-    opacity: 1;
-    transform: none;
-    clip-path: none;
-  }
-}
+/* Keep observed card bounds visible; animate masks on their artwork children. */
+.artist-art, .gallery-item > div { transition: clip-path var(--reveal) var(--ease) var(--delay, 0ms); }
+.js-motion .artist-card:not(.is-visible) { opacity:1; transform:translateY(20px); clip-path:none; }
+.js-motion .artist-card:not(.is-visible) .artist-art { clip-path:inset(0 0 100% 0); }
+.js-motion .gallery-item:not(.is-visible) { opacity:1; transform:none; clip-path:none; }
+.js-motion .gallery-item:not(.is-visible) > div { clip-path:inset(0 100% 0 0); }
+.js-motion .event-row:not(.is-visible) {transform:translateX(-20px);clip-path:inset(0);}
+.motion-paused .artist-art, .motion-paused .gallery-item > div {clip-path:none!important;}
+@media(prefers-reduced-motion:reduce){.js-motion .artist-card:not(.is-visible),.js-motion .gallery-item:not(.is-visible),.js-motion .event-row:not(.is-visible),.js-motion .artist-card:not(.is-visible) .artist-art,.js-motion .gallery-item:not(.is-visible)>div{opacity:1;transform:none;clip-path:none;}}
