@@ -51,9 +51,9 @@ All source tokens are in `src/styles/tokens.css`. `.paper-section` changes seman
 
 ## Imagery and surfaces
 
-Current artwork is original procedural vector art, delivered as WebP. The existing abstract forms are preserved but retuned to carbon, silver and paper; one gallery piece uses signal red. Use restrained contrast, purposeful crops and subtle grain. Preserve the red vinyl as a tactile object rather than a light source. Future portraits should use consistent black-and-white treatment; no filters are permanently imposed on uploaded photos.
+The multi-page edition combines original photographic studies with procedural cover artwork, delivered as responsive WebP. Carbon and silver portraits, warm paper light, motion blur and red club atmosphere create a varied editorial rhythm. The photographs are generated placeholders, not real artist portraits. Preserve purposeful crops and restrained color; image treatment is not permanently imposed on replacement photos. The tactile red vinyl now anchors the listening room.
 
-`src/data/collective.ts` selects all portraits, mix covers and gallery assets. Replace those paths with real photos when available. Artwork masters and exports are in `public/art/`.
+`src/data/assets.ts` controls photographic metadata and gallery entries; `src/data/editorial.ts` selects artist images, sessions and events. Originals live in `src/assets/photos/`; run `npm run images:build` after replacing or adding files. The generated manifest supplies dimensions and responsive variants. Abstract cover masters remain in `public/art/`.
 
 ## UI and motion
 

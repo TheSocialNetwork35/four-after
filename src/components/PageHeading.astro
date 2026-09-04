@@ -1,0 +1,24 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  line?: string;
+  description?: string;
+}
+const { eyebrow, title, line, description } = Astro.props;
+---
+
+<div class="page-heading">
+  <span class="micro">{eyebrow}</span><h1 class="enter-title">
+    {title}{
+      line && (
+        <>
+          <>
+            <br />
+            <span>{line}</span>
+          </>
+        </>
+      )
+    }
+  </h1>{description && <p>{description}</p>}
+</div>

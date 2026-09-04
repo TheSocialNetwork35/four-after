@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BrandMark from "../../components/BrandMark.astro";
+import SessionCard from "../../components/SessionCard.astro";
+import SoundLab from "../../components/SoundLab.astro";
+import NextPage from "../../components/NextPage.astro";
+import { sessions } from "../../data/editorial";
+---
+
+<Layout title="Music & Sets — FOUR / AFTER"
+  ><main id="main" class="music-page">
+    <section class="music-hero paper-section">
+      <div class="music-title">
+        <span class="micro">02 / THE LISTENING ROOM</span><h1
+          class="enter-title"
+        >
+          Less talk.<br />More <span>listening.</span>
+        </h1><p>
+          Sets, Selektionen und gemeinsame Sessions.<br />Ein Archiv, das mit
+          uns wächst.
+        </p>
+      </div><div class="record-stage" aria-label="Interaktive Vinyl-Skulptur">
+        <div class="record">
+          <div class="record-surface">
+            <div class="record-label">
+              <span>FOUR / AFTER</span><b><BrandMark /></b><small>
+                SIDE B · THE LISTENING ROOM
+              </small><i></i>
+            </div>
+          </div>
+        </div>
+      </div><span class="music-hero-index micro">33⅓ RPM / TAKE YOUR TIME</span>
+    </section><section class="page-pad music-catalogue">
+      <div class="editorial-heading">
+        <h2>F/A selects.</h2><span class="micro">001—002 / IN PREPARATION</span>
+      </div><div class="session-grid">
+        {sessions.map((session) => <SessionCard session={session} />)}
+      </div><p class="content-note">
+        Die ersten Sets werden vorbereitet. Titel und Cover sind Vorschauen; es
+        gibt noch keine veröffentlichten Aufnahmen.
+      </p>
+    </section><section class="sound-experiment paper-section page-pad">
+      <span class="micro">SIDE B / INTERACTIVE SOUND STUDY</span><div>
+        <h2>Find a little<br />space in sound.</h2><p>
+          Eine kleine generative Klangfläche zum Erkunden. Direkt in deinem
+          Browser erzeugt, ohne Streamingdienst oder Mikrofon.
+        </p><SoundLab />
+      </div><div class="sound-rings" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </div>
+    </section><NextPage title="Sound needs a room." href="/events/" />
+  </main></Layout
+>

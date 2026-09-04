@@ -23,6 +23,8 @@
   --color-border-light: #11111230;
   --color-overlay: #111112e8;
 
+  --selection-bg: var(--color-signal);
+  --selection-ink: var(--color-carbon);
   --bg: var(--color-carbon);
   --secondary-bg: var(--color-charcoal);
   --surface: var(--color-surface);

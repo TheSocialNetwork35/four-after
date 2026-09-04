@@ -1,0 +1,34 @@
+---
+import { assets, type AssetKey } from "../data/assets";
+interface Props {
+  asset: AssetKey;
+  class?: string;
+  sizes?: string;
+  priority?: boolean;
+  alt?: string;
+  transition?: string;
+}
+const {
+  asset,
+  class: className = "",
+  sizes = "(max-width: 650px) 100vw, 50vw",
+  priority = false,
+  alt,
+  transition,
+} = Astro.props;
+const image = assets[asset];
+---
+
+<img
+  class={`photo ${className}`}
+  src={image.src}
+  srcset={image.srcset || undefined}
+  sizes={sizes}
+  width={image.width}
+  height={image.height}
+  alt={alt ?? image.alt}
+  loading={priority ? "eager" : "lazy"}
+  fetchpriority={priority ? "high" : "auto"}
+  decoding="async"
+  style={`--focal:${image.focus};${transition ? `view-transition-name:${transition};` : ""}`}
+/>

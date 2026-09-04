@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Photo from "../components/Photo.astro";
+import { brand, artists } from "../data/collective";
+---
+
+<Layout title="Booking & Contact — FOUR / AFTER"
+  ><main id="main" class="booking-page">
+    <section class="booking-opening page-pad paper-section">
+      <span class="micro">06 / GOOD NIGHTS START HERE</span><h1
+        class="enter-title"
+      >
+        LET’S MAKE<br /><span>A NIGHT.</span>
+      </h1><div class="booking-opening-bottom">
+        <p>Ein Club. Ein Festival.<br />Ein Raum für eine gute Idee.</p><span
+          class="booking-symbol"
+          aria-hidden="true"
+        >
+          ↗
+        </span>
+      </div>
+    </section><section class="booking-body page-pad">
+      <div class="booking-contact">
+        <span class="micro">BOOKING & COLLABORATIONS</span><h2>
+          Start with<br />a conversation.
+        </h2>{
+          brand.email ? (
+            <a class="booking-email" href={`mailto:${brand.email}`}>
+              {brand.email} ↗
+            </a>
+          ) : (
+            <div class="contact-pending">
+              <>
+                <p>
+                  Unser gemeinsamer Booking-Kontakt wird gerade eingerichtet.
+                </p>
+                <p>
+                  Wenn du Yannis, Cian, Maxim oder Thierry bereits kennst,
+                  sprich uns gerne direkt an. Die offizielle Kontaktadresse
+                  erscheint hier in Kürze.
+                </p>
+                <span class="micro">CONTACT — COMING SOON</span>
+              </>
+            </div>
+          )
+        }<div class="booking-roster">
+          {artists.map((a) => <a href={`/artists/${a.slug}/`}>{a.name} ↗</a>)}
+        </div>
+      </div><div class="booking-brief">
+        <span class="micro">A GOOD FIRST MESSAGE</span><h3>
+          Tell us about<br />your night.
+        </h3><ol>
+          <li>Wann und wo findet dein Event statt?</li><li>
+            Welcher Sound passt zu deinem Raum?
+          </li><li>Einzelner Artist oder das gesamte Kollektiv?</li><li>
+            Geplante Spielzeit, Setup und Rahmen?
+          </li>
+        </ol><button class="pill" id="copy-brief">
+          Booking-Brief kopieren ↗
+        </button><p id="copy-status" aria-live="polite" class="content-note">
+        </p><p class="content-note">
+          Die Vorlage wird nur in deine Zwischenablage kopiert. Es werden keine
+          Daten gesendet.
+        </p>
+      </div>
+    </section><section class="booking-image">
+      <Photo asset="space" sizes="100vw" /><span class="micro">
+        MAKE ROOM FOR SOMETHING GOOD.
+      </span>
+    </section>
+  </main></Layout
+>

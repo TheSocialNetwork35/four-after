@@ -1,0 +1,38 @@
+{
+  "cian": {
+    "src": "/photos/cian-1024.webp",
+    "width": 1024,
+    "height": 1536,
+    "srcset": "/photos/cian-480.webp 480w, /photos/cian-800.webp 800w, /photos/cian-1024.webp 1024w"
+  },
+  "maxim": {
+    "src": "/photos/maxim-1023.webp",
+    "width": 1023,
+    "height": 1537,
+    "srcset": "/photos/maxim-480.webp 480w, /photos/maxim-800.webp 800w, /photos/maxim-1023.webp 1023w"
+  },
+  "night": {
+    "src": "/photos/night-1536.webp",
+    "width": 1536,
+    "height": 1024,
+    "srcset": "/photos/night-480.webp 480w, /photos/night-800.webp 800w, /photos/night-1200.webp 1200w, /photos/night-1536.webp 1536w"
+  },
+  "space": {
+    "src": "/photos/space-1536.webp",
+    "width": 1536,
+    "height": 1024,
+    "srcset": "/photos/space-480.webp 480w, /photos/space-800.webp 800w, /photos/space-1200.webp 1200w, /photos/space-1536.webp 1536w"
+  },
+  "thierry": {
+    "src": "/photos/thierry-1023.webp",
+    "width": 1023,
+    "height": 1537,
+    "srcset": "/photos/thierry-480.webp 480w, /photos/thierry-800.webp 800w, /photos/thierry-1023.webp 1023w"
+  },
+  "yannis": {
+    "src": "/photos/yannis-1023.webp",
+    "width": 1023,
+    "height": 1537,
+    "srcset": "/photos/yannis-480.webp 480w, /photos/yannis-800.webp 800w, /photos/yannis-1023.webp 1023w"
+  }
+}

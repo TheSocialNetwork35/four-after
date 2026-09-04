@@ -1,0 +1,23 @@
+---
+import Photo from "./Photo.astro";
+import { eventConcepts } from "../data/editorial";
+interface Props {
+  event: (typeof eventConcepts)[number];
+  index?: number;
+}
+const { event, index = 0 } = Astro.props;
+---
+
+<a href={`/events/${event.slug}/`} class="event-feature reveal">
+  <div class="event-feature-image">
+    <Photo asset={event.photo} /><span class="micro">{event.status}</span>
+  </div><div class="event-feature-info">
+    <span class="micro">0{index + 1} / {event.type}</span><h2>
+      {event.title}
+    </h2><p>
+      {event.date ?? "Termin folgt"} · {event.venue ?? "Venue wird angekündigt"}
+    </p><span class="text-link">
+      Explore the night <i aria-hidden="true">↗</i>
+    </span>
+  </div>
+</a>

@@ -1,0 +1,29 @@
+---
+import { sessions } from "../data/editorial";
+interface Props {
+  session: (typeof sessions)[number];
+}
+const { session } = Astro.props;
+---
+
+<a class="session-card reveal" href={`/music/${session.slug}/`}>
+  <div class="session-cover">
+    <img
+      src={session.art}
+      alt={`Coverstudie ${session.title}`}
+      width="800"
+      height="1000"
+      loading="lazy"
+    /><span class="micro">F/A SELECTS<br />{session.number}</span><i
+      aria-hidden="true"
+    >
+      ↗
+    </i>
+  </div><div class="session-caption">
+    <h3>{session.title}</h3><span class="micro">{session.credit}</span><span
+      class="micro muted"
+    >
+      {session.url ? "Listen now" : "In preparation"}
+    </span>
+  </div>
+</a>

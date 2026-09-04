@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Photo from "../../components/Photo.astro";
+import NextPage from "../../components/NextPage.astro";
+import PhotoNote from "../../components/PhotoNote.astro";
+import { artists } from "../../data/collective";
+import { artistEditorial } from "../../data/editorial";
+---
+
+<Layout title="Artists — FOUR / AFTER"
+  ><main id="main" class="artists-directory">
+    <div class="directory-intro page-pad">
+      <span class="micro">01 / THE PEOPLE</span><h1 class="enter-title">
+        Four minds.<br /><span>No duplicates.</span>
+      </h1><p>
+        Vier eigene Handschriften. Entdecke die Menschen und die musikalischen
+        Ideen dahinter.
+      </p>
+    </div><div class="artist-chapters">
+      {
+        artists.map((artist, i) => (
+          <a
+            class={`artist-chapter chapter-${i} reveal`}
+            href={`/artists/${artist.slug}/`}
+          >
+            <>
+              <div class="chapter-label micro">
+                <>
+                  <span>0{i + 1} / SELECTOR</span>
+                  <span>{artist.style}</span>
+                </>
+              </div>
+              <div class="chapter-portrait">
+                <Photo
+                  asset={artistEditorial[artist.slug].photo}
+                  transition={`portrait-${artist.slug}`}
+                />
+              </div>
+              <h2>{artist.name}</h2>
+              <p>{artistEditorial[artist.slug].headline}</p>
+              <span class="chapter-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </>
+          </a>
+        ))
+      }
+    </div><div class="page-pad"><PhotoNote /></div><NextPage
+      title="Hear the connection."
+      href="/music/"
+    />
+  </main></Layout
+>

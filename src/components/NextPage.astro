@@ -1,0 +1,12 @@
+---
+const { label = "Keep exploring", title, href } = Astro.props;
+---
+
+<a class="next-page" href={href}>
+  <span class="micro">{label}</span><span class="next-title">{title}</span><span
+    class="next-arrow"
+    aria-hidden="true"
+  >
+    ↗
+  </span>
+</a>

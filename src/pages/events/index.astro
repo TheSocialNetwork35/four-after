@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeading from "../../components/PageHeading.astro";
+import EventFeature from "../../components/EventFeature.astro";
+import NextPage from "../../components/NextPage.astro";
+import PhotoNote from "../../components/PhotoNote.astro";
+import { eventConcepts } from "../../data/editorial";
+---
+
+<Layout title="Events & Nights — FOUR / AFTER"
+  ><main id="main" class="events-page">
+    <div class="page-pad">
+      <PageHeading
+        eyebrow="03 / THE GATHERINGS"
+        title="Offline is"
+        line="where it happens."
+        description="Die nächsten Kapitel entstehen. Hier findest du künftig alle Termine, Venues und Tickets."
+      /><div class="event-announcement">
+        <span class="status-dot"></span><p>
+          Noch keine bestätigten Termine. Die folgenden Formate geben einen
+          Einblick in unsere Planung.
+        </p>
+      </div>
+    </div><section class="event-features">
+      {
+        eventConcepts.map((event, index) => (
+          <EventFeature event={event} index={index} />
+        ))
+      }
+    </section><section class="event-archive paper-section page-pad">
+      <span class="micro">THE ARCHIVE</span><h2>
+        Every night<br />leaves a trace.
+      </h2><p>
+        Nach den ersten gemeinsamen Veranstaltungen wächst hier unser Rückblick
+        – mit Line-ups, Bildern und den Geschichten dazwischen.
+      </p><a href="/gallery/" class="text-link">Explore the visual journal ↗</a>
+    </section><div class="page-pad"><PhotoNote /></div><NextPage
+      label="Have a room in mind?"
+      title="Let’s make it happen."
+      href="/booking/"
+    />
+  </main></Layout
+>

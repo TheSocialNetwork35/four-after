@@ -1,55 +1,110 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Photo from "../../components/Photo.astro";
+import PhotoNote from "../../components/PhotoNote.astro";
+import SessionCard from "../../components/SessionCard.astro";
+import NextPage from "../../components/NextPage.astro";
 import { artists } from "../../data/collective";
+import { artistEditorial, sessions } from "../../data/editorial";
 export function getStaticPaths() {
-  return artists.map((artist, index) => ({
+  return artists.map((artist, i) => ({
     params: { slug: artist.slug },
-    props: { artist, next: artists[(index + 1) % artists.length] },
+    props: { artist, next: artists[(i + 1) % artists.length] },
   }));
 }
 const { artist, next } = Astro.props;
+const profile = artistEditorial[artist.slug];
+const selected = sessions.filter((s) => s.artists.includes(artist.slug));
 ---
 
-<Layout title={`${artist.name} — FOUR / AFTER`}
-  ><main id="main" class="profile">
-    <a class="micro" href="/#artists">← Alle Artists</a><div
-      class="profile-grid"
-    >
-      <img
-        src={artist.image}
-        alt={`Abstraktes Artwork für ${artist.name}`}
-        width="800"
-        height="1000"
-      /><div>
-        <span class="micro">THE COLLECTIVE / {artist.number}</span><h1>
+<Layout
+  title={`${artist.name} — FOUR / AFTER`}
+  description={`${artist.name}: ${artist.style}. Ein Teil von FOUR / AFTER.`}
+  ><main id="main" class={`artist-profile profile-${profile.layout}`}>
+    <section class="artist-profile-hero">
+      <a class="profile-back micro" href="/artists/">← The artists</a><div
+        class="profile-photo"
+      >
+        <Photo
+          asset={profile.photo}
+          priority
+          sizes="(max-width:650px) 100vw, 70vw"
+          transition={`portrait-${artist.slug}`}
+        />
+      </div><div class="profile-title">
+        <span class="micro">F/A SELECTOR — {artist.number}</span><h1>
           {artist.name}
-        </h1><span class="micro">{artist.style}</span><p>{artist.bio}</p><p
-          class="content-note"
-        >
-          Vorläufiger Profiltext & Stilvorschlag. Das Artwork wird später durch
-          ein Portrait oder finale Visuals ersetzt.
-        </p>{
-          artist.links.length ? (
-            artist.links.map((link) => (
-              <a
-                class="pill"
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label} ↗
-              </a>
-            ))
-          ) : (
-            <p class="micro">SOCIALS & MUSIC LINKS — COMING SOON</p>
-          )
-        }<a class="pill" href="/#booking">Booking & Kontakt ↗</a><a
-          class="profile-next"
-          href={`/artists/${next.slug}/`}
-        >
-          Next frequency: {next.name} ↗
-        </a>
+        </h1><p>{profile.headline}</p>
+      </div><span class="profile-genre micro">{artist.style}</span>
+    </section>
+    <section class="profile-story paper-section page-pad">
+      <span class="micro">01 / IN THEIR OWN FREQUENCY</span><div>
+        <h2 class="reveal">{profile.quote}</h2><div class="story-columns">
+          <p>{artist.bio}</p><p>{profile.detail}</p>
+        </div><p class="content-note">
+          Bio und Soundrichtung sind vorläufige redaktionelle Entwürfe.
+        </p><div class="artist-socials">
+          {
+            artist.links.length ? (
+              artist.links.map((l) => (
+                <a
+                  class="text-link"
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {l.label} ↗
+                </a>
+              ))
+            ) : (
+              <>
+                <>
+                  <span class="micro">SoundCloud — folgt</span>
+                  <span class="micro">Spotify — folgt</span>
+                  <span class="micro">Mixcloud — folgt</span>
+                </>
+              </>
+            )
+          }
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="profile-music page-pad">
+      <div class="editorial-heading">
+        <h2>Selected<br />frequencies.</h2><a class="text-link" href="/music/">
+          Music archive ↗
+        </a>
+      </div><div class="profile-session-layout">
+        {selected.map((session) => <SessionCard session={session} />)}<div
+          class="profile-notes"
+        >
+          <span class="micro">UP NEXT</span><h3>
+            More room<br />for what’s next.
+          </h3><p>
+            Eigene Sets, Releases und bestätigte Auftritte von {artist.name} erscheinen
+            hier, sobald sie veröffentlicht werden.
+          </p><a href="/events/" class="text-link">Events entdecken ↗</a>
+        </div>
+      </div>
+    </section>
+    <section class="profile-fragments">
+      <div class="fragment-title">
+        <span class="micro">02 / VISUAL NOTES</span><h2>
+          {profile.headline}
+        </h2><a href="/gallery/" class="text-link">The visual journal ↗</a>
+      </div><div class="fragment-wide">
+        <Photo asset={profile.gallery[0]} />
+      </div><div class="fragment-small">
+        <Photo asset={profile.gallery[1]} />
+      </div>
+    </section><div class="page-pad">
+      <PhotoNote /><a class="text-link" href="/booking/">
+        Book {artist.name} ↗
+      </a>
+    </div><NextPage
+      label="Next selector"
+      title={next.name}
+      href={`/artists/${next.slug}/`}
+    />
   </main></Layout
 >

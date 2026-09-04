@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Photo from "../components/Photo.astro";
+import PhotoNote from "../components/PhotoNote.astro";
+import NextPage from "../components/NextPage.astro";
+import BrandMark from "../components/BrandMark.astro";
+import { artists, copy } from "../data/collective";
+---
+
+<Layout title="The Collective — FOUR / AFTER"
+  ><main id="main">
+    <section class="collective-opening page-pad paper-section">
+      <span class="micro">05 / THE SPACE BETWEEN US</span><h1
+        class="enter-title"
+      >
+        Not a formula.<br /><span>A feeling.</span>
+      </h1><div class="collective-opening-bottom">
+        <BrandMark /><p>{copy.intro}</p>
+      </div>
+    </section><section class="collective-editorial page-pad">
+      <div class="sticky-story">
+        <span class="micro">FOUR MINDS. ONE FREQUENCY.</span><h2>
+          Für alles,<br />was zwischen<br />den Tracks<br />passiert.
+        </h2><p>{copy.body}</p><a href="/artists/" class="text-link">
+          The four of us ↗
+        </a>
+      </div><div class="collective-photo-stack">
+        <div class="reveal"><Photo asset="space" /></div><blockquote>
+          „Die besten Nächte haben keine feste Richtung.“
+        </blockquote><div class="reveal"><Photo asset="night" /></div>
+      </div>
+    </section><section class="collective-values paper-section page-pad">
+      <span class="micro">THE THINGS WE SHARE</span><div>
+        <article>
+          <span class="micro">01</span><h2>Curiosity.</h2><p>
+            Offen bleiben. Zuhören. Tracks entdecken, die noch niemand erwartet.
+          </p>
+        </article><article>
+          <span class="micro">02</span><h2>Connection.</h2><p>
+            Musik ist ein Gespräch. Zwischen uns, dem Raum und den Menschen
+            darin.
+          </p>
+        </article><article>
+          <span class="micro">03</span><h2>No boundaries.</h2><p>
+            Eine gemeinsame Haltung braucht keine identischen Plattensammlungen.
+          </p>
+        </article>
+      </div>
+    </section><section class="collective-names page-pad">
+      <span class="micro">THE COLLECTIVE</span>{
+        artists.map((a) => (
+          <a href={`/artists/${a.slug}/`}>
+            {a.name}
+            <span>↗</span>
+          </a>
+        ))
+      }<PhotoNote />
+    </section><NextPage title="Let’s build a memory." href="/booking/" />
+  </main></Layout
+>

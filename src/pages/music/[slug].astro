@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Photo from "../../components/Photo.astro";
+import NextPage from "../../components/NextPage.astro";
+import { sessions } from "../../data/editorial";
+export function getStaticPaths() {
+  return sessions.map((session, i) => ({
+    params: { slug: session.slug },
+    props: { session, next: sessions[(i + 1) % sessions.length] },
+  }));
+}
+const { session, next } = Astro.props;
+---
+
+<Layout title={`${session.title} — F/A Selects`}
+  ><main id="main">
+    <section class="release-hero page-pad">
+      <a href="/music/" class="micro">← The listening room</a><div
+        class="release-grid"
+      >
+        <div class="release-art">
+          <img
+            src={session.art}
+            alt={`Coverstudie ${session.title}`}
+            width="800"
+            height="1000"
+            fetchpriority="high"
+          />
+        </div><div>
+          <span class="micro">F/A SELECTS — {session.number}</span><h1
+            class="enter-title"
+          >
+            {session.title}
+          </h1><p class="release-credit">{session.credit}</p><p>
+            {session.description}
+          </p><dl class="release-data">
+            <div><dt>Sound</dt><dd>{session.mood}</dd></div><div>
+              <dt>Status</dt><dd>
+                {session.url ? "Veröffentlicht" : "In Vorbereitung"}
+              </dd>
+            </div><div>
+              <dt>Release</dt><dd>
+                {session.releaseDate ?? "Wird angekündigt"}
+              </dd>
+            </div>
+          </dl>{
+            session.url ? (
+              <a
+                class="pill"
+                href={session.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Set anhören ↗
+              </a>
+            ) : (
+              <p class="micro muted">
+                Audio & Tracklist folgen mit der Veröffentlichung.
+              </p>
+            )
+          }<div class="release-artists">
+            {
+              session.artists.map((a: string) => (
+                <a href={`/artists/${a}/`}>{a} ↗</a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section><section class="release-photo">
+      <Photo asset={session.photo} sizes="100vw" /><h2>{session.chapter}</h2>
+    </section><NextPage
+      label="Next selection"
+      title={next.title}
+      href={`/music/${next.slug}/`}
+    />
+  </main></Layout
+>

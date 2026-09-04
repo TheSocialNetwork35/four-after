@@ -1,0 +1,27 @@
+---
+import Photo from "./Photo.astro";
+import type { AssetKey } from "../data/assets";
+import { artists } from "../data/collective";
+interface Props {
+  artist: (typeof artists)[number];
+  index?: number;
+}
+const { artist, index = 0 } = Astro.props;
+---
+
+<a
+  class="artist-tile reveal"
+  href={`/artists/${artist.slug}/`}
+  style={`--delay:${index * 70}ms`}
+>
+  <div class="tile-photo">
+    <Photo
+      asset={artist.slug as AssetKey}
+      transition={`portrait-${artist.slug}`}
+    /><span class="micro">F/A — {artist.number}</span><i aria-hidden="true">
+      ↗
+    </i>
+  </div><div class="tile-info">
+    <h3>{artist.name}</h3><span class="micro">{artist.style}</span>
+  </div>
+</a>

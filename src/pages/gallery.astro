@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GalleryItem from "../components/GalleryItem.astro";
+import Lightbox from "../components/Lightbox.astro";
+import NextPage from "../components/NextPage.astro";
+import PhotoNote from "../components/PhotoNote.astro";
+import { galleryItems } from "../data/assets";
+---
+
+<Layout title="Gallery — The visual journal — FOUR / AFTER"
+  ><main id="main" class="gallery-page">
+    <div class="lookbook-header page-pad">
+      <span class="micro">04 / THE VISUAL JOURNAL</span><h1 class="enter-title">
+        AFTER<br /><span>IMAGES.</span>
+      </h1><div>
+        <p>Not everything<br />needs words.</p><span class="micro">
+          VOL. 01 — VISUAL STUDIES<br />AN ONGOING COLLECTION
+        </span>
+      </div>
+    </div><section class="lookbook-section page-pad">
+      <div class="gallery-toolbar">
+        <div class="gallery-filters" role="group" aria-label="Galerie filtern">
+          {
+            ["Alle", "Räume", "Menschen"].map((label, i) => (
+              <button
+                data-gallery-filter={label}
+                aria-pressed={i === 0 ? "true" : "false"}
+              >
+                {label}
+              </button>
+            ))
+          }
+        </div><span class="micro" id="gallery-result" aria-live="polite">
+          06 images
+        </span>
+      </div><div class="lookbook-grid">
+        {galleryItems.map((item) => <GalleryItem item={item} />)}
+      </div><PhotoNote />
+    </section><section class="gallery-end paper-section page-pad">
+      <span class="micro">THIS IS ONLY THE BEGINNING</span><h2>
+        More nights.<br />More stories.
+      </h2><p>
+        Hier entsteht unser Fotoarchiv. Die aktuellen Bildstudien zeigen die
+        Richtung – echte Momente folgen.
+      </p>
+    </section><NextPage title="Meet the people." href="/artists/" />
+  </main><Lightbox /></Layout
+>

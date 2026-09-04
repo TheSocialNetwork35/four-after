@@ -1,0 +1,68 @@
+---
+import Brand from "./Brand.astro";
+import { navigation, isActive } from "../data/navigation";
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <Brand /><nav class="quick-nav" aria-label="Hauptnavigation">
+    {
+      navigation
+        .filter((n) => ["Artists", "Music", "Events"].includes(n.label))
+        .map((n) => (
+          <a
+            href={n.href}
+            aria-current={isActive(path, n.href) ? "page" : undefined}
+          >
+            {n.label}
+          </a>
+        ))
+    }
+  </nav><button
+    class="menu-toggle"
+    aria-controls="site-menu"
+    aria-expanded="false"
+  >
+    <span>Explore</span><span class="menu-glyph" aria-hidden="true">
+      <i></i><i></i>
+    </span>
+  </button>
+</header>
+<dialog id="site-menu" class="site-menu" aria-label="Seitennavigation">
+  <div class="menu-top">
+    <Brand /><button class="menu-close" aria-label="Menü schließen">
+      Close <span aria-hidden="true">×</span>
+    </button>
+  </div><div class="menu-layout">
+    <p class="micro menu-intro">
+      FOUR MINDS.<br />ONE FREQUENCY.<br /><br />An independent<br />DJ
+      collective.
+    </p><nav aria-label="Alle Seiten">
+      {
+        navigation.map((n) => (
+          <a
+            href={n.href}
+            aria-current={isActive(path, n.href) ? "page" : undefined}
+            data-menu-note={n.note}
+          >
+            <>
+              <small>{n.number}</small>
+              <span>{n.label}</span>
+              <i aria-hidden="true">↗</i>
+            </>
+          </a>
+        ))
+      }
+    </nav><div class="menu-aside">
+      <span class="menu-watermark" aria-hidden="true">F/A</span><p
+        id="menu-note"
+      >
+        The space between sound & people.
+      </p>
+    </div>
+  </div><div class="menu-bottom micro">
+    <span>Yannis / Cian / Maxim / Thierry</span><span>
+      Stay curious. Stay a little longer.
+    </span>
+  </div>
+</dialog>

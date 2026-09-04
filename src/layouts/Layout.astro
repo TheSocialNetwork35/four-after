@@ -1,32 +1,22 @@
 ---
-import Brand from "../components/Brand.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import "../styles/brand.css";
 import "../styles/fonts.css";
-
+import "../styles/pages.css";
 const {
   title = "FOUR / AFTER — Four minds. One frequency.",
-  description = "Yannis, Cian, Maxim und Thierry. Ein unabhängiges DJ-Kollektiv. Vier Perspektiven auf elektronische Musik, eine gemeinsame Frequenz.",
+  description = "Yannis, Cian, Maxim und Thierry. Ein unabhängiges DJ-Kollektiv. Musik, Menschen und die Räume dazwischen.",
   noindex = false,
+  theme = "dark",
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="de">
   <head>
-    <meta charset="UTF-8" /><link
-      rel="preload"
-      href="/fonts/inter-tight-latin-wght-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    /><link
-      rel="preload"
-      href="/fonts/ibm-plex-mono-latin-400-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    /><meta
+    <meta charset="UTF-8" /><meta
       name="viewport"
       content="width=device-width, initial-scale=1"
     /><meta name="theme-color" content="#111112" /><title>{title}</title><meta
@@ -47,46 +37,17 @@ const {
     /><meta name="twitter:card" content="summary_large_image" />{
       noindex && <meta name="robots" content="noindex" />
     }
-  </head><body>
-    <a class="skip" href="#main">Zum Inhalt</a><header class="header">
-      <Brand /><nav class="desktop-nav" aria-label="Hauptnavigation">
-        <a href="/#collective">Collective</a><a href="/#artists">Artists</a><a
-          href="/#sound"
-        >
-          Sound
-        </a><a href="/#events">Dates</a>
-      </nav><a class="booking-link" href="/#booking">
-        Let’s connect <span>↗</span>
-      </a><button
-        class="menu-button"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        title="Menü öffnen"
-      >
-        Menü <span aria-hidden="true">＋</span>
-      </button>
-    </header><nav
-      id="mobile-menu"
-      class="mobile-menu"
-      aria-label="Mobile Navigation"
-      hidden
+  </head><body data-theme={theme}>
+    <a class="skip" href="#main">Zum Inhalt</a><div
+      class="reading-progress"
+      aria-hidden="true"
     >
-      <a href="/#collective">Collective <small>01</small></a><a
-        href="/#artists"
-      >
-        Artists <small>02</small>
-      </a><a href="/#sound">Sound <small>03</small></a><a href="/#events">
-        Dates <small>04</small>
-      </a><a href="/#booking">Let’s connect ↗</a>
-    </nav><slot /><footer class="footer">
-      <Brand /><p>Four minds. One frequency.</p><div>
-        <a href="/impressum/">Impressum</a><a href="/datenschutz/">
-          Datenschutz
-        </a><button id="motion-toggle" aria-pressed="false">
-          Bewegung pausieren
-        </button>
-      </div><span class="micro">© {new Date().getFullYear()} FOUR / AFTER</span>
-    </footer><script>
+    </div><Header /><slot /><Footer /><div
+      class="page-curtain"
+      aria-hidden="true"
+    >
+      <span>FOUR / AFTER</span>
+    </div><script>
       import "../scripts/experience";
     </script>
   </body>

@@ -1,0 +1,27 @@
+---
+import Photo from "./Photo.astro";
+import { assets, galleryItems } from "../data/assets";
+interface Props {
+  item: (typeof galleryItems)[number];
+}
+const { item } = Astro.props;
+---
+
+<button
+  class={`lookbook-item lookbook-${item.format} reveal`}
+  data-gallery-src={assets[item.asset].src}
+  data-gallery-title={item.title}
+  data-category={item.category}
+  title={`${item.title} vergrößern`}
+>
+  <div class="lookbook-photo">
+    <Photo asset={item.asset} sizes="(max-width:650px) 100vw, 65vw" /><span
+      class="image-zoom"
+      aria-hidden="true"
+    >
+      ＋
+    </span>
+  </div><span class="lookbook-caption">
+    <span>{item.title}</span><small>{item.id}</small>
+  </span><span class="micro">{item.note}</span>
+</button>

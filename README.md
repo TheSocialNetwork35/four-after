@@ -2,66 +2,73 @@
 
 Independent DJ collective — Yannis, Cian, Maxim, Thierry.
 
-**Live:** https://four-after.pages.dev  
+**Production:** https://four-after.pages.dev
+
 **Repository:** https://github.com/TheSocialNetwork35/four-after
 
 ## Development
 
-Node 22.12+ (Node 22 LTS recommended).
+Node 22.12+; `npm ci`, then `npm run dev`.
 
-```sh
-npm ci
-npm run dev
-npm run build
-npm run preview
-```
+- `npm run build`: Astro + strict TypeScript checks, then static production build.
+- `npm run preview`: inspect the production build locally.
+- `npm run lint`: ESLint for TypeScript interactions/data and generation scripts.
+- `npm run format:check`: source formatting, including Astro components.
+- `npm run images:build`: generate responsive WebP variants and the image manifest.
+- `npm run brand:generate`: regenerate vector branding, social preview and abstract cover artwork from design tokens.
 
-Astro static output, strict TypeScript, custom CSS motion and a small vanilla TypeScript interaction layer. No React runtime, WebGL dependency, tracking, remote fonts or third-party embeds. Web Audio runs only after explicit activation, and stops when the page is hidden.
+Astro static HTML, TypeScript, self-hosted Inter Tight / IBM Plex Mono, CSS motion and native browser APIs. No React runtime, tracking, remote embeds, autoplay audio or continuous WebGL render loop. Gallery, audio and booking code load only on the relevant pages.
 
-## Editing
+## Architecture
 
-- `src/data/collective.ts`: brand, booking email, introductory copy, artist descriptions/styles/links/images, mixes, event data and gallery. Set `brand.email` to the real shared booking address to activate a mail link. Do not use a private address without the owner's consent.
-- `public/art/`: self-created artwork placeholders, optimized WebP and editable SVG sources. Replace images and update their paths in the data file. Portrait images use a 4:5 ratio; provide 800×1000 or higher. Keep exports compressed and self-hosted.
-- `src/components/Brand.astro`: temporary wordmark; `brand.logo` accepts a local image path.
-- `src/components/EventRow.astro`: reusable event row. Add confirmed date/venue/city/ticket URL in the data; set `example: false` and update the section's preview note when publishing real dates.
-- `src/pages/index.astro`: section headings, layout, status notes and contact dialog.
-- `src/pages/artists/[slug].astro`: all four individual profiles generated from data.
-- `src/styles/tokens.css`: central palette, typography, spacing, radii, shadows and motion tokens.
-- `src/styles/brand.css`: Signal / Sleeve identity, paper panels, wordmark sizing and UI treatments.
-- `src/styles/fonts.css`: self-hosted font declarations.
-- `src/styles/global.css`: existing grid, mobile layouts and transitions.
-- `public/brand/`: outlined wordmarks in light/dark and horizontal/stacked variants; four-stroke brandmark.
-- `docs/BRAND.md`: moodboard interpretation, usage guidance and regeneration instructions.
-- `src/scripts/experience.ts`: menu focus management, scroll reveals, vinyl pointer interaction, dialogs, gallery keyboard controls, motion preference and opt-in sound.
-- `src/pages/impressum.astro` and `datenschutz.astro`: clearly identified legal placeholders. Supply the real operator information and check applicable requirements.
-- `public/og.png`, `og-source.svg`, `favicon.svg`: social preview and icon.
-- `astro.config.mjs`, `src/pages/sitemap.xml.ts`, `public/robots.txt`: update the canonical domain together if adding a custom domain.
+- `/`: photographic entry and curated previews.
+- `/artists/`: editorial artist directory.
+- `/artists/{yannis,cian,maxim,thierry}/`: four distinct hero compositions, bios, music, visual notes and booking.
+- `/music/` and `/music/{after-hours,between-worlds}/`: listening room, interactive vinyl, opt-in sound study and session detail pages.
+- `/events/` and `/events/{the-first-chapter,somewhere-after-dark}/`: event formats and detail pages, ready for confirmed dates and ticket links.
+- `/gallery/`: asymmetric visual journal, category filters and keyboard/touch fullscreen viewer.
+- `/collective/`: manifesto, image essay and collective introduction.
+- `/booking/`: contact preparation and a locally copied booking brief.
+- `/impressum/`, `/datenschutz/`: clearly marked legal placeholders.
+- `/404.html`: real not-found page.
 
-## Deployment
+Every route is built as HTML. Direct loads, refresh and browser history use native navigation, enhanced with cross-document view transitions. No SPA catch-all redirect is required. Existing homepage section URLs are redirected to their corresponding new routes in the browser.
 
-Native Cloudflare Pages GitHub integration is configured for `TheSocialNetwork35/four-after`:
+## Editing content
 
-- Production branch: `main`
-- Build: `npm run build`
-- Output: `dist`
-- Root: repository root
-- Automatic production deployments: enabled
-- Pull request preview deployments: enabled
+| Location                                      | Purpose                                                                                                   |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `src/data/collective.ts`                      | Brand, real shared booking email, artist names, genres, bios and social links                             |
+| `src/data/editorial.ts`                       | Artist layout/photo choices, quotes, sessions and event formats; adding a slug generates its detail route |
+| `src/data/assets.ts`                          | Photo descriptions, alt text, focal positions and gallery entries/categories/layout rhythm                |
+| `src/data/navigation.ts`                      | Shared navigation and page descriptions                                                                   |
+| `src/pages/`                                  | Page-specific headings, stories and compositions                                                          |
+| `src/styles/tokens.css`                       | Palette, fonts, selection colors, spacing and motion primitives                                           |
+| `src/styles/pages.css`                        | Multi-page layout, responsive compositions, page/menu transitions                                         |
+| `src/styles/fonts.css`                        | Self-hosted font declarations; OFL licenses in `public/fonts/`                                            |
+| `src/components/Brand.astro`, `public/brand/` | Wordmark and mark variants; `brand.logo` supports a replacement logo                                      |
 
-Pushes to main build and deploy through Cloudflare. No GitHub Actions token or deployment credential is stored in the repository. Review deployment status in Cloudflare Pages. The TypeScript compiler is pinned to 6.0.3 because Astro's checker requires the programmatic API unavailable in TypeScript 7.
+### Replace photography
 
-## Content status
+1. Replace the corresponding original in `src/assets/photos/`, retaining its base name. PNG, JPEG and WebP are supported; only one file per base name.
+2. Run `npm run images:build`. The script writes 480/800/1200/1600px variants where source resolution allows, and updates `src/data/image-manifest.json`.
+3. Adjust alt text and `focus` in `src/data/assets.ts`. Check the intended crops on desktop and mobile.
+4. To add a new image, add its source file, generate variants, add its metadata to `imageCopy`, then reference its key from gallery/editorial content. TypeScript checks missing metadata.
 
-Branding, artist bios/genres, mix titles, and event concepts are editable proposals. No real booking address, portraits, artist social URLs, mixes, confirmed dates or operator details were provided. The website explicitly labels pending content and never fabricates live tickets, playable sets or contact details.
+The six initial photographic studies were generated specifically for this project. They are provisional, anonymous visual studies, **not photographs of the actual DJs or confirmed events**. Source files are kept for replacement and derivative exports; only optimized WebP images ship to the site. Existing abstract cover artwork is generated from original SVGs. Pinterest references are not published as site assets.
 
-## Artwork and fonts
+### Reusable components
 
-Artworks are generated specifically for this project using `scripts/generate-art.mjs`; SVGs are the editable masters. WebP delivery versions are generated with Sharp. Font files are self-hosted Inter Tight and IBM Plex Mono, distributed under the SIL Open Font License; licenses are in `public/fonts/`.
+`Photo`, `ArtistCard`, `SessionCard`, `EventFeature`, `GalleryItem`, `Lightbox`, `PageHeading`, `NextPage`, `Header`, `Footer`, `SoundLab`. Each content type has central data. Set null URLs only when real destinations are available; missing links render honest status text. Supply real operator details in the legal pages before treating those placeholders as final legal notices.
 
 ## Motion and accessibility
 
-`--ease`, `--fast`, `--reveal` define the shared motion language. Native cross-document view transitions enhance profile navigation in supporting browsers. Other browsers use normal navigation. Reduced-motion disables all animation and smooth scrolling. A footer control pauses motion for the current page. Native dialogs trap focus, support Escape and restore focus. The gallery supports arrow keys. Mobile navigation includes a focus loop and Escape support. No autoplay audio.
+Controlled text/image reveals, scroll progress, desktop photo parallax, sticky editorial content, pointer-reactive vinyl, staggered fullscreen menu, hover crops and press states. Artist photographs have shared view-transition names. Unsupported browsers receive a short navigation curtain; reduced motion bypasses animation. A footer control pauses motion for the current page.
 
-## Branding update
+Native dialogs trap focus, support Escape, restore focus and release scroll locks. Gallery navigation supports arrow keys and horizontal touch swipes. `::selection` and `::-moz-selection` use carbon text on signal red throughout light and dark sections. Sound is synthesized locally only after a click and stops on page hide. The booking brief only writes a template to the clipboard on explicit click; it never submits information.
 
-The September 2026 **Signal / Sleeve** redesign follows the supplied vinyl/editorial moodboard: carbon black, warm paper, controlled signal red, Inter Tight and IBM Plex Mono. See [brand guidelines](docs/BRAND.md). Run `npm run brand:generate` after changing primitive color tokens to update all generated assets.
+## Cloudflare deployment
+
+Existing native GitHub integration: repository `TheSocialNetwork35/four-after`, production branch `main`, build `npm run build`, output `dist`, repository root. Automatic production builds and PR previews remain enabled. No deployment secrets are committed. A push to main builds and deploys through Cloudflare Pages. Static route directories and the top-level 404 preserve direct URL and not-found behavior.
+
+The TypeScript compiler stays pinned to 6.0.3 for compatibility with Astro's checker. Update the canonical site in `astro.config.mjs`, robots and sitemap configuration together if changing domains.

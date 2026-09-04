@@ -1,0 +1,29 @@
+---
+import Brand from "./Brand.astro";
+import { navigation } from "../data/navigation";
+---
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <Brand /><p>Four minds.<br />One frequency.</p><a
+      href="/booking/"
+      class="text-link"
+    >
+      Let’s make a night <span>↗</span>
+    </a>
+  </div><nav aria-label="Footer Navigation">
+    {
+      navigation
+        .filter((n) => n.href !== "/")
+        .map((n) => <a href={n.href}>{n.label}</a>)
+    }
+  </nav><div class="footer-bottom micro">
+    <span>© {new Date().getFullYear()} FOUR / AFTER</span><div>
+      <a href="/impressum/">Impressum</a><a href="/datenschutz/">
+        Datenschutz
+      </a><button id="motion-toggle" aria-pressed="false">
+        Bewegung pausieren
+      </button>
+    </div><a href="#main">Back to top ↑</a>
+  </div>
+</footer>

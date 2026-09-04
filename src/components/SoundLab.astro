@@ -1,0 +1,16 @@
+<div class="sound-lab">
+  <button id="sound-toggle" class="pill" aria-pressed="false">
+    <span aria-hidden="true">▥</span> Sound experiment starten
+  </button><p class="micro">GENERATIVER AMBIENT-LOOP · KEIN DJ-SET</p><div
+    class="waveform"
+    aria-hidden="true"
+  >
+    {
+      Array.from({ length: 48 }, (_, i) => (
+        <i
+          style={`--bar:${15 + Math.sin(i * 1.7) ** 2 * 85}%;--delay:${i * 37}ms`}
+        />
+      ))
+    }
+  </div>
+</div>
