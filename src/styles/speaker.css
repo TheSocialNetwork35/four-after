@@ -665,3 +665,23 @@
     margin-top: 14px;
   }
 }
+.speaker-poster {
+  position: absolute;
+  inset: 0 0 38px;
+  pointer-events: none;
+  display: block;
+}
+.speaker-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.speaker-experience:not(.speaker-fallback) .speaker-object,
+.speaker-experience:not(.speaker-fallback) .speaker-shadow,
+.speaker-experience:not(.speaker-fallback) .room-orbit {
+  display: none;
+}
+.speaker-webgl .speaker-poster,
+.speaker-fallback .speaker-poster {
+  display: none;
+}

@@ -207,9 +207,23 @@ export function initSpeaker() {
     { threshold: 0.05 },
   ).observe(root);
   apply();
-  void import("./speaker-model")
-    .then((m) => m.createSpeakerModel(root))
-    .catch(() => {
-      /* Keep the interactive CSS fallback if WebGL is unavailable. */
-    });
+  let modelRequested = false;
+  const loadModel = () => {
+    if (modelRequested) return;
+    modelRequested = true;
+    const hint = root.querySelector<HTMLElement>(".speaker-drag")!;
+    hint.textContent = "3D wird geladen …";
+    void import("./speaker-model")
+      .then((m) => {
+        m.createSpeakerModel(root);
+        hint.textContent = "↔ ↕ Frei drehen & Klang entdecken";
+      })
+      .catch(() => {
+        root.classList.add("speaker-fallback");
+        hint.textContent = "↔ ↕ Drehen & Klang entdecken";
+      });
+  };
+  root.addEventListener("pointerenter", loadModel, { once: true });
+  root.addEventListener("pointerdown", loadModel, { once: true });
+  root.addEventListener("focusin", loadModel, { once: true });
 }

@@ -27,6 +27,18 @@ import "../styles/speaker.css";
       aria-label="Drehbare dreidimensionale Musikbox. Horizontal und vertikal ziehen oder die beiden Regler zum Drehen verwenden."
       role="img"
     >
+      <picture class="speaker-poster" aria-hidden="true">
+        <source
+          media="(max-width:700px)"
+          srcset="/objects/speaker-mobile.webp"
+        /><img
+          src="/objects/speaker.webp"
+          alt=""
+          width="695"
+          height="522"
+          decoding="async"
+        />
+      </picture>
       <div class="room-orbit" aria-hidden="true"></div><div
         class="speaker-shadow"
         aria-hidden="true"
