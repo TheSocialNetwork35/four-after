@@ -21,7 +21,7 @@ Astro static HTML, TypeScript, self-hosted Inter Tight / IBM Plex Mono, CSS moti
 
 ## Architecture
 
-- `/`: photographic entry and curated previews.
+- `/`: interactive CSS 3D speaker, opt-in directional room sound and curated previews.
 - `/artists/`: editorial artist directory.
 - `/artists/{yannis,cian,maxim,thierry}/`: four distinct hero compositions, bios, music, visual notes and booking.
 - `/music/` and `/music/{after-hours,between-worlds}/`: listening room, interactive vinyl, opt-in sound study and session detail pages.
@@ -72,3 +72,7 @@ Native dialogs trap focus, support Escape, restore focus and release scroll lock
 Existing native GitHub integration: repository `TheSocialNetwork35/four-after`, production branch `main`, build `npm run build`, output `dist`, repository root. Automatic production builds and PR previews remain enabled. No deployment secrets are committed. A push to main builds and deploys through Cloudflare Pages. Static route directories and the top-level 404 preserve direct URL and not-found behavior.
 
 The TypeScript compiler stays pinned to 6.0.3 for compatibility with Astro's checker. Update the canonical site in `astro.config.mjs`, robots and sitemap configuration together if changing domains.
+
+### Homepage speaker
+
+`SpeakerHero.astro`, `styles/speaker.css` and `scripts/speaker.ts` implement the homepage-only object. Drag or use the accessible angle slider. Audio is generated locally after explicit activation; rotation changes stereo pan, low-pass filtering and the dry/reverb balance. The sound fades out when stopped or when the object leaves the viewport. The Music page and its vinyl are unchanged.

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SpeakerHero from "../components/SpeakerHero.astro";
 import Photo from "../components/Photo.astro";
 import ArtistCard from "../components/ArtistCard.astro";
 import SessionCard from "../components/SessionCard.astro";
@@ -11,31 +12,7 @@ import { sessions } from "../data/editorial";
 
 <Layout
   ><main id="main">
-    <section class="home-stage">
-      <Photo
-        asset="night"
-        priority
-        sizes="(max-width:650px) 1000px, 100vw"
-        class="home-backdrop"
-      /><div class="home-shade"></div><div class="home-eyebrow micro">
-        <span>Independent DJ collective</span><span>
-          Yannis / Cian / Maxim / Thierry
-        </span>
-      </div><h1 class="home-wordmark">
-        <span>FOUR<span class="signal">/</span></span><span>AFTER</span>
-      </h1><div class="home-stage-bottom">
-        <p>Four minds.<br />One frequency.</p><a
-          href="/collective/"
-          class="text-link"
-        >
-          Enter our world <span>↗</span>
-        </a><span class="micro">
-          For the moments<br />that become the night.
-        </span>
-      </div><span class="hero-photo-label micro">
-        Visual study / after dark
-      </span>
-    </section>
+    <SpeakerHero />
     <section class="home-intro paper-section page-pad">
       <span class="micro">01 / A SHARED FREQUENCY</span><div>
         <h2 class="reveal">

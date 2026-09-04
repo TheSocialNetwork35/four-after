@@ -1,0 +1,102 @@
+---
+import BrandMark from "./BrandMark.astro";
+import "../styles/speaker.css";
+---
+
+<section class="speaker-hero paper-section" aria-labelledby="speaker-heading">
+  <div class="speaker-intro">
+    <span class="micro">Independent DJ collective / Est. together</span><h1
+      id="speaker-heading"
+    >
+      FOUR<span>/</span><br />AFTER
+    </h1><p class="speaker-tagline">Four minds.<br />Feel the frequency.</p><p
+      class="speaker-description"
+    >
+      Yannis, Cian, Maxim & Thierry.<br />Vier Perspektiven. Ein gemeinsamer
+      Sound.
+    </p><a href="/collective/" class="text-link">
+      Enter our world <span>↗</span>
+    </a>
+  </div>
+  <div class="speaker-experience" data-speaker>
+    <div class="speaker-meta micro">
+      <span>F/A SOUND SYSTEM — 01</span><span>Interactive sound object</span>
+    </div>
+    <div
+      class="speaker-room"
+      aria-label="Drehbare dreidimensionale Musikbox. Den Regler unterhalb zum Drehen verwenden."
+      role="img"
+    >
+      <div class="room-orbit" aria-hidden="true"></div><div
+        class="speaker-shadow"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="speaker-object" aria-hidden="true">
+        <div class="cabinet-face cabinet-front">
+          <div class="speaker-brand">
+            <BrandMark /><span>FOUR / AFTER</span>
+          </div><div class="tweeter"><i></i></div><div class="woofer">
+            <div class="woofer-cone"><i></i></div>
+          </div><div class="speaker-port"></div><div class="cabinet-label">
+            <span>F/A · HIGH FIDELITY</span><i class="power-light"></i>
+          </div><b class="cabinet-screw screw-one"></b><b
+            class="cabinet-screw screw-two"
+          >
+          </b><b class="cabinet-screw screw-three"></b><b
+            class="cabinet-screw screw-four"
+          >
+          </b>
+        </div>
+        <div class="cabinet-face cabinet-back">
+          <span>FOUR / AFTER<br />SOUND SYSTEM 01</span><div class="back-vents">
+          </div><i></i><small>DESIGNED FOR THE FEELING.</small>
+        </div>
+        <div class="cabinet-face cabinet-left"></div><div
+          class="cabinet-face cabinet-right"
+        >
+          <span>F/A</span>
+        </div><div class="cabinet-face cabinet-top"></div><div
+          class="cabinet-face cabinet-bottom"
+        >
+        </div>
+      </div>
+      <span class="speaker-drag micro">↔ Ziehen & Klang entdecken</span>
+    </div>
+    <div class="speaker-controls">
+      <div class="speaker-angle">
+        <label for="speaker-angle" class="micro">
+          Ausrichtung <output id="speaker-angle-value">−25°</output>
+        </label><input
+          id="speaker-angle"
+          type="range"
+          min="-140"
+          max="140"
+          value="-25"
+          step="1"
+          aria-label="Musikbox drehen"
+        /><div class="speaker-scale micro">
+          <span>Left</span><span>Front</span><span>Right</span>
+        </div>
+      </div><button class="speaker-play" type="button" aria-pressed="false">
+        <span aria-hidden="true">▶</span><span data-sound-label>
+          Sound einschalten
+        </span>
+      </button>
+    </div>
+    <div class="speaker-footnote">
+      <p id="speaker-status" aria-live="polite">
+        Dreh die Box. Mit Sound verändert sich auch der Raum.
+      </p><span class="micro">Klangstudie / Kopfhörer empfohlen</span>
+    </div>
+  </div>
+  <div class="speaker-bottom micro">
+    <span>Sound brings us together.</span><a href="/music/">
+      The listening room ↗
+    </a>
+  </div>
+</section>
+<script>
+  import { initSpeaker } from "../scripts/speaker";
+  initSpeaker();
+</script>
