@@ -380,7 +380,7 @@ p {
 }
 .record-coordinate {
   position: absolute;
-  right: 1%;
+  right: 5%;
   bottom: 7%;
   color: #c3c8b8;
 }
@@ -1557,4 +1557,28 @@ dialog p {
 /* Keep perspective decoration from expanding the mobile visual viewport. */
 .hero {
   overflow: clip;
+}
+/* Section-specific reveals: artwork wipes, gallery shutters, and quiet text lifts. */
+.js-motion .artist-card:not(.is-visible) {
+  opacity: 1;
+  transform: translateY(20px);
+  clip-path: inset(0 0 100% 0);
+}
+.js-motion .gallery-item:not(.is-visible) {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 100% 0 0);
+}
+.js-motion .event-row:not(.is-visible) {
+  transform: translateX(-20px);
+  clip-path: inset(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-motion .artist-card:not(.is-visible),
+  .js-motion .gallery-item:not(.is-visible),
+  .js-motion .event-row:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
 }

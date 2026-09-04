@@ -11,8 +11,20 @@ const {
 
 <!doctype html>
 <html lang="de">
-  <head
-    ><meta charset="UTF-8" /><meta
+  <head>
+    <meta charset="UTF-8" /><link
+      rel="preload"
+      href="/fonts/space-grotesk-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    /><link
+      rel="preload"
+      href="/fonts/manrope-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    /><meta
       name="viewport"
       content="width=device-width, initial-scale=1"
     /><meta name="theme-color" content="#11130f" /><title>{title}</title><meta
@@ -32,39 +44,48 @@ const {
       content={new URL(Astro.url.pathname, Astro.site)}
     /><meta name="twitter:card" content="summary_large_image" />{
       noindex && <meta name="robots" content="noindex" />
-    }</head
-  ><body
-    ><a class="skip" href="#main">Zum Inhalt</a><header class="header">
+    }
+  </head><body>
+    <a class="skip" href="#main">Zum Inhalt</a><header class="header">
       <Brand /><nav class="desktop-nav" aria-label="Hauptnavigation">
         <a href="/#collective">Collective</a><a href="/#artists">Artists</a><a
-          href="/#sound">Sound</a
-        ><a href="/#events">Dates</a>
-      </nav><a class="booking-link" href="/#booking"
-        >Let’s connect <span>↗</span></a
-      ><button
+          href="/#sound"
+        >
+          Sound
+        </a><a href="/#events">Dates</a>
+      </nav><a class="booking-link" href="/#booking">
+        Let’s connect <span>↗</span>
+      </a><button
         class="menu-button"
         aria-expanded="false"
         aria-controls="mobile-menu"
-        aria-label="Menü öffnen">Menü <span>＋</span></button>
+        aria-label="Menü öffnen"
+      >
+        Menü <span aria-hidden="true">＋</span>
+      </button>
     </header><nav
       id="mobile-menu"
       class="mobile-menu"
       aria-label="Mobile Navigation"
       hidden
     >
-      <a href="/#collective">Collective <small>01</small></a><a href="/#artists"
-        >Artists <small>02</small></a
-      ><a href="/#sound">Sound <small>03</small></a><a href="/#events"
-        >Dates <small>04</small></a
-      ><a href="/#booking">Let’s connect ↗</a>
+      <a href="/#collective">Collective <small>01</small></a><a
+        href="/#artists"
+      >
+        Artists <small>02</small>
+      </a><a href="/#sound">Sound <small>03</small></a><a href="/#events">
+        Dates <small>04</small>
+      </a><a href="/#booking">Let’s connect ↗</a>
     </nav><slot /><footer class="footer">
       <Brand /><p>Four minds. One frequency.</p><div>
-        <a href="/impressum/">Impressum</a><a href="/datenschutz/"
-          >Datenschutz</a
-        ><button id="motion-toggle" aria-pressed="false"
-          >Bewegung pausieren</button>
+        <a href="/impressum/">Impressum</a><a href="/datenschutz/">
+          Datenschutz
+        </a><button id="motion-toggle" aria-pressed="false">
+          Bewegung pausieren
+        </button>
       </div><span class="micro">© {new Date().getFullYear()} FOUR / AFTER</span>
     </footer><script>
       import "../scripts/experience";
-    </script></body>
+    </script>
+  </body>
 </html>

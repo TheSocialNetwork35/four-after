@@ -191,10 +191,12 @@ async function stopSound() {
   }
 }
 soundButton?.addEventListener("click", async () => {
+  if (soundButton.disabled) return;
   if (playing) {
     await stopSound();
     return;
   }
+  soundButton.disabled = true;
   try {
     audio = new AudioContext();
     await audio.resume();
@@ -222,6 +224,8 @@ soundButton?.addEventListener("click", async () => {
   } catch {
     await stopSound();
     soundButton.textContent = "Audio ist in diesem Browser nicht verfügbar";
+  } finally {
+    soundButton.disabled = false;
   }
 });
 document.addEventListener("visibilitychange", () => {
