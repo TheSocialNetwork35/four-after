@@ -7,3 +7,6 @@ if (document.querySelector("#lightbox"))
 if (document.querySelector("#sound-toggle")) void import("./audio");
 if (document.querySelector("#copy-brief"))
   void import("./booking").then((m) => m.initBooking());
+
+if (document.querySelector("[data-speaker]"))
+  void import("./speaker").then((m) => m.initSpeaker());
