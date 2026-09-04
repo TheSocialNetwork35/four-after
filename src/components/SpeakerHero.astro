@@ -24,7 +24,7 @@ import "../styles/speaker.css";
     </div>
     <div
       class="speaker-room"
-      aria-label="Drehbare dreidimensionale Musikbox. Den Regler unterhalb zum Drehen verwenden."
+      aria-label="Drehbare dreidimensionale Musikbox. Horizontal und vertikal ziehen oder die beiden Regler zum Drehen verwenden."
       role="img"
     >
       <div class="room-orbit" aria-hidden="true"></div><div
@@ -61,7 +61,7 @@ import "../styles/speaker.css";
         >
         </div>
       </div>
-      <span class="speaker-drag micro">↔ Ziehen & Klang entdecken</span>
+      <span class="speaker-drag micro">↔ ↕ Frei drehen & Klang entdecken</span>
     </div>
     <div class="speaker-controls">
       <div class="speaker-angle">
@@ -70,14 +70,27 @@ import "../styles/speaker.css";
         </label><input
           id="speaker-angle"
           type="range"
-          min="-140"
-          max="140"
+          min="-180"
+          max="180"
           value="-25"
           step="1"
           aria-label="Musikbox drehen"
         /><div class="speaker-scale micro">
           <span>Left</span><span>Front</span><span>Right</span>
         </div>
+        <label for="speaker-tilt" class="micro">
+          Neigung <output id="speaker-tilt-value">0°</output>
+        </label><input
+          id="speaker-tilt"
+          type="range"
+          min="-180"
+          max="180"
+          value="0"
+          step="1"
+          aria-label="Musikbox vertikal drehen"
+        /><button class="speaker-reset micro" type="button">
+          Ansicht zurücksetzen ↺
+        </button>
       </div><button class="speaker-play" type="button" aria-pressed="false">
         <span aria-hidden="true">▶</span><span data-sound-label>
           Sound einschalten

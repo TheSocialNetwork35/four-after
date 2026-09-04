@@ -8,6 +8,11 @@ export function initSpeaker() {
   const button = root.querySelector<HTMLButtonElement>(".speaker-play")!;
   const label = root.querySelector<HTMLElement>("[data-sound-label]")!;
   const status = root.querySelector<HTMLElement>("#speaker-status")!;
+  const tiltSlider = root.querySelector<HTMLInputElement>("#speaker-tilt")!;
+  const tiltOutput = root.querySelector<HTMLOutputElement>(
+    "#speaker-tilt-value",
+  )!;
+  let tilt = 0;
   let angle = -25,
     audio: AudioContext | null = null,
     source: AudioBufferSourceNode | null = null;
@@ -19,12 +24,17 @@ export function initSpeaker() {
   let generation = 0;
   const apply = () => {
     angle = Number(slider.value);
+    tilt = Number(tiltSlider.value);
+    tiltOutput.value = `${tilt}°`;
+    tiltSlider.setAttribute("aria-valuetext", `${tilt} Grad`);
+    root.style.setProperty("--speaker-tilt", `${tilt}deg`);
+    root.dispatchEvent(new Event("speaker-orientation"));
     root.style.setProperty("--speaker-turn", `${angle}deg`);
     output.value = `${angle > 0 ? "+" : ""}${angle}°`;
     slider.setAttribute("aria-valuetext", `${angle} Grad`);
     if (audio && dry && wet && filter && pan) {
       const radians = (angle * Math.PI) / 180,
-        front = (Math.cos(radians) + 1) / 2;
+        front = (Math.cos(radians) * Math.cos((tilt * Math.PI) / 180) + 1) / 2;
       dry.gain.setTargetAtTime(0.35 + 0.65 * front, audio.currentTime, 0.09);
       wet.gain.setTargetAtTime(
         0.12 + (1 - front) * 0.95,
@@ -40,20 +50,33 @@ export function initSpeaker() {
     }
   };
   slider.addEventListener("input", apply);
-  let drag: { id: number; x: number; angle: number } | null = null;
+  tiltSlider.addEventListener("input", apply);
+  root.querySelector(".speaker-reset")?.addEventListener("click", () => {
+    slider.value = "-25";
+    tiltSlider.value = "0";
+    apply();
+  });
+  let drag: {
+    id: number;
+    x: number;
+    y: number;
+    angle: number;
+    tilt: number;
+  } | null = null;
   room.addEventListener("pointerdown", (e) => {
     if (e.button !== 0) return;
-    drag = { id: e.pointerId, x: e.clientX, angle };
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, angle, tilt };
     room.setPointerCapture(e.pointerId);
     room.classList.add("is-dragging");
   });
   room.addEventListener("pointermove", (e) => {
     if (!drag || drag.id !== e.pointerId) return;
+    const wrap = (value: number) => ((((value + 180) % 360) + 360) % 360) - 180;
     slider.value = String(
-      Math.max(
-        -140,
-        Math.min(140, Math.round(drag.angle + (e.clientX - drag.x) * 0.65)),
-      ),
+      Math.round(wrap(drag.angle + (e.clientX - drag.x) * 0.65)),
+    );
+    tiltSlider.value = String(
+      Math.round(wrap(drag.tilt + (e.clientY - drag.y) * 0.55)),
     );
     apply();
   });
@@ -184,4 +207,9 @@ export function initSpeaker() {
     { threshold: 0.05 },
   ).observe(root);
   apply();
+  void import("./speaker-model")
+    .then((m) => m.createSpeakerModel(root))
+    .catch(() => {
+      /* Keep the interactive CSS fallback if WebGL is unavailable. */
+    });
 }

@@ -21,7 +21,7 @@ Astro static HTML, TypeScript, self-hosted Inter Tight / IBM Plex Mono, CSS moti
 
 ## Architecture
 
-- `/`: interactive CSS 3D speaker, opt-in directional room sound and curated previews.
+- `/`: interactive geometric 3D speaker, opt-in directional room sound and curated previews.
 - `/artists/`: editorial artist directory.
 - `/artists/{yannis,cian,maxim,thierry}/`: four distinct hero compositions, bios, music, visual notes and booking.
 - `/music/` and `/music/{after-hours,between-worlds}/`: listening room, interactive vinyl, opt-in sound study and session detail pages.
@@ -75,4 +75,4 @@ The TypeScript compiler stays pinned to 6.0.3 for compatibility with Astro's che
 
 ### Homepage speaker
 
-`SpeakerHero.astro`, `styles/speaker.css` and `scripts/speaker.ts` implement the homepage-only object. Drag or use the accessible angle slider. Audio is generated locally after explicit activation; rotation changes stereo pan, low-pass filtering and the dry/reverb balance. The sound fades out when stopped or when the object leaves the viewport. The Music page and its vinyl are unchanged.
+`SpeakerHero.astro`, `styles/speaker.css`, `scripts/speaker.ts` and `scripts/speaker-model.ts` implement the homepage-only object. The dynamically loaded Three.js model uses beveled cabinet geometry, lathed cones, torus surrounds, mounting hardware, feet, handles, rear connectors and soft geometry shadows. It renders only on changes; a CSS fallback remains available without WebGL. Drag horizontally and vertically through 360° or use the two accessible angle sliders. Reset restores the initial view. Audio is generated locally after explicit activation; rotation changes stereo pan, low-pass filtering and the dry/reverb balance. The sound fades out when stopped or when the object leaves the viewport. The Music page and its vinyl are unchanged.

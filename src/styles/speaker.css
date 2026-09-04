@@ -605,3 +605,63 @@
     padding-top: 8px;
   }
 }
+/* Geometric model takes over only after WebGL has initialized successfully. */
+.speaker-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: calc(100% - 38px);
+  pointer-events: none;
+}
+.speaker-webgl .speaker-object,
+.speaker-webgl .speaker-shadow,
+.speaker-webgl .room-orbit {
+  display: none;
+}
+.speaker-room {
+  touch-action: none;
+  height: 560px;
+  overflow: hidden;
+}
+.speaker-object {
+  transform: rotateX(var(--speaker-tilt, -8deg)) rotateY(var(--speaker-turn));
+}
+.speaker-drag {
+  bottom: 3px;
+  pointer-events: none;
+}
+.speaker-angle label[for="speaker-tilt"] {
+  margin-top: 14px;
+}
+.speaker-reset {
+  font-size: 8px;
+  padding: 8px 0;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 700px) {
+  .speaker-room {
+    height: 460px;
+  }
+  .speaker-controls {
+    align-items: start;
+  }
+  .speaker-play {
+    margin-top: 14px;
+  }
+}
+@media (min-width: 701px) and (max-height: 800px) {
+  .speaker-room {
+    height: 430px;
+  }
+  .speaker-hero {
+    padding-top: 20px;
+  }
+  .speaker-controls {
+    align-items: start;
+  }
+  .speaker-play {
+    margin-top: 14px;
+  }
+}
