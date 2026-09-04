@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EventRow from "../components/EventRow.astro";
+import MixCard from "../components/MixCard.astro";
 import {
   brand,
   artists,
@@ -140,35 +141,7 @@ import {
             </div>
           </div>
         </div><div class="mixes">
-          {
-            mixes.map((mix) => (
-              <article class="mix-card reveal">
-                <div>
-                  <>
-                    <span class="micro">F/A SELECTS — {mix.number}</span>
-                    <h3>{mix.title}</h3>
-                    <p>{mix.artist}</p>
-                    <span class="micro muted">{mix.mood}</span>
-                  </>
-                </div>
-                {mix.url ? (
-                  <a
-                    href={mix.url}
-                    aria-label={`${mix.title} anhören`}
-                    class="mix-play"
-                  >
-                    ↗
-                  </a>
-                ) : (
-                  <span class="micro mix-soon">
-                    COMING
-                    <br />
-                    SOON
-                  </span>
-                )}
-              </article>
-            ))
-          }<p class="content-note">
+          {mixes.map((mix) => <MixCard mix={mix}/>)}<p class="content-note">
             Die ersten Mixes folgen. Cover & Titel sind Vorschauen.
           </p>
         </div>
@@ -203,7 +176,7 @@ import {
               class="gallery-item reveal"
               data-gallery-src={item.image}
               data-gallery-title={item.title}
-              aria-label={`${item.title} vergrößern`}
+              title={`${item.title} vergrößern`}
             >
               <>
                 <div>

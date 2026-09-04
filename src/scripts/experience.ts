@@ -40,7 +40,7 @@ function closeMenu() {
   if (!menu || !menuButton) return;
   menu.hidden = true;
   menuButton.setAttribute("aria-expanded", "false");
-  menuButton.setAttribute("aria-label", "Menü öffnen");
+  menuButton.setAttribute("title", "Menü öffnen");
   document.body.classList.remove("locked", "menu-open");
 }
 menuButton?.addEventListener("click", () => {
@@ -52,7 +52,7 @@ menuButton?.addEventListener("click", () => {
   }
   menu.hidden = false;
   menuButton.setAttribute("aria-expanded", "true");
-  menuButton.setAttribute("aria-label", "Menü schließen");
+  menuButton.setAttribute("title", "Menü schließen");
   document.body.classList.add("locked", "menu-open");
   menu.querySelector("a")?.focus();
 });
